@@ -6,11 +6,11 @@
 /*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:42:34 by jariskan          #+#    #+#             */
-/*   Updated: 2025/02/18 14:58:51 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:21:21 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 typedef struct	s_data {
 	void	*img;
@@ -40,8 +40,8 @@ int	main(void)
         printf("ERROR\n");
         return (0);
     }
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
+	mlx_win = mlx_new_window(mlx, 400, 400, "Hello world!");
+	img.img = mlx_new_image(mlx, 400, 400);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
 	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
