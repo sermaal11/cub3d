@@ -12,38 +12,66 @@ MLX_PATH = ./minilibx-linux/
 MLX_NAME = libmlx.a
 MLX = $(MLX_PATH)$(MLX_NAME)
 
+# Libft
+LIBFT_PATH = ./libft/
+LIBFT_NAME = libft.a
+LIBFT = $(LIBFT_PATH)$(LIBFT_NAME)
+
 # Directorios
 SRC_DIR = src
 OBJ_DIR = obj
 
 # Archivos fuente
-SRC = main.c
+SRC = main.c  # Agrega más archivos aquí
 
 # Archivos objeto
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 # Reglas make
-all: $(MLX) $(NAME)
+all: $(LIBFT) $(MLX) $(NAME)
 
+# Compila el ejecutable principal
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(MLX) -L$(MLX_PATH) -lmlx -lXext -lX11 -lm -I/usr/include -Imlx_linux -L/usr/lib
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(MLX) $(LIBFT) \
+		-L$(MLX_PATH) -lmlx -L$(LIBFT_PATH) -lft -lXext -lX11 -lm -I/usr/include -Imlx_linux -L/usr/lib
 
+# Compilar primero libft
+$(LIBFT):
+	@echo "Compilando Libft..."
+	@make -C $(LIBFT_PATH)
+
+# Compilar primero MinilibX
 $(MLX):
-	make -sC $(MLX_PATH)
+	@echo "Compilando MinilibX..."
+	@make -C $(MLX_PATH)
 
+# Compilar archivos fuente a objetos
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# Crear el directorio de objetos si no existe
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
+# Eliminar archivos objeto y limpiar librerías
 clean:
+	@echo "Limpiando archivos objeto..."
 	rm -rf $(OBJ_DIR)
+	@echo "Limpiando Libft..."
+	make -C $(LIBFT_PATH) clean
+	@echo "Limpiando MinilibX..."
+	make -C $(MLX_PATH) clean
 
+# Eliminar todo lo generado (ejecutable + librerías)
 fclean: clean
+	@echo "Eliminando ejecutable..."
 	rm -f $(NAME)
-	make -sC $(MLX_PATH) clean
+	@echo "Eliminando Libft..."
+	make -C $(LIBFT_PATH) fclean
+	@echo "Eliminando MinilibX..."
+	make -C $(MLX_PATH) clean
 
-re: fclean $(MLX) all
+# Regenerar todo desde cero
+re: fclean all
 
 .PHONY: all clean fclean re

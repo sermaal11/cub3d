@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:42:34 by jariskan          #+#    #+#             */
-/*   Updated: 2025/02/19 11:37:57 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:23:16 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,22 @@
 // 	mlx_loop(mlx);
 // }
 
-int ft_check_map_extension(char *map_file)
+int ft_verify_extension(char *map_file)
 {
-	
+	int len;
+	int i;
+	char *extension;
+
+	i = 1;
+	extension = ".cub";
+	len =ft_strlen(map_file);
+	while (i <= 4)
+	{
+		if (map_file[len - i] != *(extension + (4 - i)))
+			printf("Error\n.Extension invalida.\n");
+		i++;
+	}
+	return (0);
 }
 
 int main(int argc, char **argv)
@@ -59,7 +72,7 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		printf("Invalid number of arguments\n");
 	// Verificar extension del mapa.
-	if (ft_check_map_extension(argv[1]))
+	if (ft_verify_extension(argv[1]))
 	{
 		printf("Error\nInvalid map extension\n");
 		return (1);
