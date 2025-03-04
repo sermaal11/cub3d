@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:09:59 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/04 15:34:49 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:48:50 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int ft_verify_extension(char *map_file)
 	return (0);
 }
 
-int ft_read_map_file(char *argv_map, t_pgm *pgm)
+int ft_store_map_file(char *argv_map, t_pgm *pgm)
 {
     char	*line_map;
     ssize_t	line_len_map;
@@ -87,7 +87,7 @@ int	ft_parsing(int argc, char *argv_map, t_pgm *pgm)
 	if (ft_verify_extension(argv_map) == 1)
         return (ft_print_error("Error:\nInvalid map extension.\n", 1));
     // Leer y guardar el mapa en un char **
-    if (ft_read_map_file(argv_map, pgm) == 1)
+    if (ft_store_map_file(argv_map, pgm) == 1)
         return (ft_print_error("Error:\nFailed parse map.\n", 1));
     
     // Validaciones sobre el mapa
