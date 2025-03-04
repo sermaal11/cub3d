@@ -22,7 +22,9 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 # Archivos fuente
-SRC = main.c  # Agrega más archivos aquí
+SRC =	main.c \
+		utils.c \
+		parsing.c
 
 # Archivos objeto
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
