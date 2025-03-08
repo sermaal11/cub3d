@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:42:34 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/04 15:00:59 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/05 19:58:31 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,23 @@ void print_map(char **map)
     printf("\n");
 }
 
-void print_maps(char **map, char **copy_map)
+void	ft_initialize(t_pgm *pgm)
 {
-    printf("Original Map:\n");
-    print_map(map);
-
-    printf("Copied Map:\n");
-    print_map(copy_map);
+	pgm->texture.texture_flag = 0;
 }
 
 int main(int argc, char **argv)
 {
 	t_pgm pgm;
+
+	// Incializar las estructuras antes para evitarn fallos y comportamientos indefinidos.
+	ft_initialize(&pgm);
 	
 	if (ft_parsing(argc, argv[1], &pgm))
 		return (1);
 	
 	// Printf para ver el contenido de la estructura pgm.map.map y pgm.map.copy_map
-	print_maps(pgm.map.map, pgm.map.copy_map);
+	//print_map(pgm.map.map);
 	
 	// void	*mlx;
 	// void	*mlx_win;
