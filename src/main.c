@@ -6,16 +6,16 @@
 /*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:42:34 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/10 20:48:39 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/11 00:38:08 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-// ! pritnf de control
+// ! pritnf de control (borrar funcion)
 void print_char_array(char **array) {
     if (!array) {
-        printf("⚠ El array está vacío o es NULL.\n");
+        printf("El array está vacío o es NULL.\n");
         return;
     }
     for (int i = 0; array[i]; i++)
@@ -30,8 +30,10 @@ int main(int argc, char **argv)
     	return (1);
 
 	// ! Print_f de control
+	// ! Solo imprime el mapa si es valido (si se ha validado correctamente)
+	// ! f_color y c_color validados. faltan map_invalid_colors3.cub y map_invalid_colors11.cub
 	print_char_array(pgm.map_file.map_file_matrix);
-	// ! print_f de control
+	
 	
     if (pgm.map_file.fd_map_file != -1)
         close(pgm.map_file.fd_map_file);

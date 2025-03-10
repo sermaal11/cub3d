@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/10 21:37:04 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/11 00:38:59 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ typedef struct s_vec3
 	int b;
 }               t_vec3;
 
-typedef struct s_texture
-{
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-}			   t_texture;
+// typedef struct s_texture
+// {
+// 	char	*no;
+// 	char	*so;
+// 	char	*we;
+// 	char	*ea;
+// }			   t_texture;
 
 typedef struct s_map
 {
@@ -62,12 +62,12 @@ typedef struct s_map_file
 
 typedef struct s_pgm
 {
-    t_map   	map;
+	t_map_file	map_file;
 	t_vec3		floor;
 	t_vec3		ceiling;
-	t_texture	texture;
-	t_map_file	map_file;
-        
+	// t_texture	texture;
+    t_map   	map;
+	
 }               t_pgm;
 
 typedef struct	s_data 
@@ -87,6 +87,8 @@ int	ft_validate_map_file(t_pgm *pgm);
 
 // parsing_floor_ceiling_color.c
 int ft_check_fc_amount(t_pgm *pgm);
+int ft_check_fc_before_map(t_pgm *pgm);
+int ft_take_fc_content(t_pgm *pgm);
 
 // utils.c
 int    ft_print_error(char *msg, int error_code);

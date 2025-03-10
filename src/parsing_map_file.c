@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:37:47 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/10 21:54:45 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/10 23:56:49 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 static int ft_validate_floor_ceiling(t_pgm *pgm)
 {
-    // ! Validar cantidad de F Y C en el archivo
     if (ft_check_fc_amount(pgm))
-        return (ft_print_error("Error:\nFailed to validate F and C amount.\n", 1));
-    // ! Validar posicion de F y C en el archivo
-    if (ft_validate_colors_before_map(pgm))
-        return (ft_print_error("Error:\nFailed to validt F and C position\n", 1));
+        return (ft_print_error("Error:\nFailed to check F and C amount.\n", 1));
+    if (ft_check_fc_before_map(pgm))
+        return (ft_print_error("Error:\nFailed to check F and C position\n", 1));
+    if (ft_take_fc_content(pgm))
+        return(ft_print_error("Error\nFailed to check RGB format\n", 1));
+    
+    
+    //     // ! printf de control
+    // printf("%s\n", pgm->floor.color);
+    // printf("%s\n", pgm->ceiling.color);
     return (0);
 }
 
@@ -28,7 +33,6 @@ int ft_validate_map_file(t_pgm *pgm)
     // ! 1. Validar colores de suelo y techo con todos los casos limite y guardar
     if (ft_validate_floor_ceiling(pgm))
         return (ft_print_error("Error:\nFailed to validate F and C format.\n", 1));
-    
     // ! 2. valñidar texturas NO, SO, WE, EA con todos los casos limite y guardar
 
     // ! 3. Validar mapa con todos los casos limite y guradar

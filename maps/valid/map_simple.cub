@@ -1,10 +1,11 @@
+
 NO ./textures/wood.xpm
 SO ./textures/door.xpm
 EA ./textures/brick.xpm
 WE ./textures/cave.xpm
 
-C 255,200,100
 F 255,200,122
+C 123,200,100
 
 11111111111111111
 10000000000000001

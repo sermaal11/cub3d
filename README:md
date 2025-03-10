@@ -1,18 +1,11 @@
-// Extraccion de colores
-		// Control de errores:
-		// El formato ha de ser de xxx,xxx,xxx
-			// Ej formatos invalidos:
-			// F 111,111,    -> falta un valor
-			// F -18446744073709551614,255,200, -> valor negativo
-			// F 255,200.122 -> . en vez de ,
-			// F 122,1262,122 -> valor fuera de rango
-			// F 255,200,-122 -> valor negativo
-			// F 255,200,122& -> char invalido (&)
-			// F 255,,200 122 -> separador de valores invalido
-			// F 255 200 122,, -> separador de valores invalido
-			// F 122,,122 -> separador de valores invalido y falta un valor
-			// F 122,122,122A -> char invalido (A)
-			// F              -> no hay valores
-			// F\n255 200,122 -> salto de linea invalido
-			// C 255,,200     -> separador de valores invalido
-		// los valores de los colores solo pueden estar entre 0 y 256
+// ! Extraccion de colores del map_file
+
+    // map_invalid_colors3.cub 
+        // C 255,200,122
+        // F 122,1262,122
+    // Valor invalido 1262 (chequear ft_take_rgb_format)
+
+    // map_invalid_colors11.cub -> revisar valores entre (0, 255)
+        // F 255,200,123
+        // X              <-- Caracter no valido entre F y C
+        // C 255,200,122
