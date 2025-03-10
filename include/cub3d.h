@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/05 19:44:11 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/10 21:37:04 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 typedef struct s_vec3
 {
+	char *color;
 	int r;
 	int g;
 	int b;
@@ -36,7 +37,6 @@ typedef struct s_vec3
 
 typedef struct s_texture
 {
-	int		texture_flag;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -45,18 +45,28 @@ typedef struct s_texture
 
 typedef struct s_map
 {
-	int		fd_map;
-    char	**map;
+	char	**map;
     char	**copy_map;
 	
 }               t_map;
 
+typedef struct s_map_file
+{
+	char	**map_file_matrix;
+	int		fd_map_file;
+	int		count_f;
+    int		count_c;
+	
+}				t_map_file;
+
+
 typedef struct s_pgm
 {
     t_map   	map;
-	t_vec3		floor; 
+	t_vec3		floor;
 	t_vec3		ceiling;
 	t_texture	texture;
+	t_map_file	map_file;
         
 }               t_pgm;
 
@@ -71,6 +81,12 @@ typedef struct	s_data
 
 // parsing.c
 int	ft_parsing(int argc, char *map, t_pgm *pgm);
+
+// parsing_map_file.c
+int	ft_validate_map_file(t_pgm *pgm);
+
+// parsing_floor_ceiling_color.c
+int ft_check_fc_amount(t_pgm *pgm);
 
 // utils.c
 int    ft_print_error(char *msg, int error_code);
