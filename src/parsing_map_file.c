@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:37:47 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/11 17:27:09 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/11 23:55:18 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,11 @@ static int ft_validate_textures(t_pgm *pgm)
 
 int ft_validate_map_file(t_pgm *pgm)
 {
+    if (ft_validate_textures(pgm))
+    return (ft_print_error("Error:\nFailed to validate textures.\n", 1));
     // ! Revisar caso limite map_invalid_colors11.cub -> int ft_check_fc_before_map(t_pgm *pgm)
     if (ft_validate_floor_ceiling(pgm))
         return (ft_print_error("Error:\nFailed to validate F and C format.\n", 1));
-    // * validar texturas NO, SO, WE, EA con todos los casos limite y guardar
-    if (ft_validate_textures(pgm))
-        return (ft_print_error("Error:\nFailed to validate textures.\n", 1));
     // TODO: 3. Validar mapa con todos los casos limite y guradar
     
     return (0);

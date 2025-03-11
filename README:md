@@ -6,7 +6,7 @@
         // F 255,200,123
         // X              <-- Caracter no valido entre F y C
         // C 255,200,122
-    // *37_map_invalid_element9.cub (path error) (revisar FC parsing)
+    // *37_map_invalid_element9.cub (path error) (reviar ft_check_fc_before_map)
         // NO ./textures/wood.xpm
         // SO ./textures/stone.xpm
         // EA ./textures/brick.xpm
@@ -43,7 +43,7 @@
         // SO ./textures/stone.xpm
         // EA ./textures/brick.xpm
         // WE ./textures/cave.xpm
-    // *37_map_invalid_element9.cub (path error) (revisar FC parsing)
+    // * 37_map_invalid_element9.cub (path error) (reviar ft_check_fc_before_map)
         // NO ./textures/wood.xpm
         // SO ./textures/stone.xpm
         // EA ./textures/brick.xpm
