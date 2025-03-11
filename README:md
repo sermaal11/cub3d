@@ -2,7 +2,14 @@
 
     // ? Extraccion de colores del map_file
 
-    // * map_invalid_colors11.cub -> int ft_check_fc_before_map(t_pgm *pgm)
+    // * 14_map_invalid_colors11.cub -> int ft_check_fc_before_map(t_pgm *pgm)
         // F 255,200,123
         // X              <-- Caracter no valido entre F y C
         // C 255,200,122
+
+    // ? Extraccion de las texturas
+    // * 28_map_invalid_texture_path.cub -> int ft_check_textures(t_pgm *pgm)
+        // NO ./textures/wood.xpm
+        // SO ./textures/stone.xpm
+        // EA ./random_path/brick.xpm  <-- Path invalido
+        // WE ./textures/cave.xpm
