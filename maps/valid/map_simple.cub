@@ -4,7 +4,7 @@ SO ./textures/door.xpm
 EA ./textures/brick.xpm
 WE ./textures/cave.xpm
 
-F 255,200,122
+F 255,255,122
 C 123,200,100
 
 11111111111111111

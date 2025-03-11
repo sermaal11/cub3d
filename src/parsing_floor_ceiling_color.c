@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:22:41 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/11 00:33:43 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:13:40 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ int ft_check_fc_before_map(t_pgm *pgm)
 {
     int i = 0;
     int map_started = 0;
+    char *line;
 
     while (pgm->map_file.map_file_matrix[i])
     {
-        char *line = pgm->map_file.map_file_matrix[i];
+        line = pgm->map_file.map_file_matrix[i];
         int j = 0;
         while (line[j])
         {
@@ -92,7 +93,7 @@ static int ft_check_rgb_format(char *rgb_format)
             return (ft_print_error("Error:\nExpected only digits and commas.\n", 1));
     }
     if (comma_count != 2 || num_count != 3)
-        return (ft_print_error("Error:\nExpected three numbers separated by two commas.\n", 1));
+        return (ft_print_error("Error:\nExpected 3 numbers and 2 commas.\n", 1));
     return (0);
 }
 
@@ -101,9 +102,11 @@ static int ft_take_rgb_format(t_pgm *pgm)
     if (ft_check_rgb_format(pgm->floor.color))
         return (ft_print_error("Error:\nInvalid RGB format.\n", 1));
     if (ft_check_rgb_format(pgm->ceiling.color))
-    return (ft_print_error("Error:\nInvalid RGB format.\n", 1));
-    
-    // ! Checkear que los valores rgb obtenidos esten entre 0 y 256
+        return (ft_print_error("Error:\nInvalid RGB format.\n", 1));
+    if (ft_check_rgb_value(pgm->floor.color, &pgm->floor))
+        return (ft_print_error("Error:\nInvalid RGB value.\n", 1));
+    if (ft_check_rgb_value(pgm->ceiling.color, &pgm->ceiling))
+        return (ft_print_error("Error:\nInvalid RGB value.\n", 1));
     
     return (0);
 }

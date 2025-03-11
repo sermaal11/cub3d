@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/11 00:38:59 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:56:37 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	ft_parsing(int argc, char *map, t_pgm *pgm);
 
 // parsing_map_file.c
 int	ft_validate_map_file(t_pgm *pgm);
+int ft_check_rgb_value(char *color, t_vec3 *vec);
 
 // parsing_floor_ceiling_color.c
 int ft_check_fc_amount(t_pgm *pgm);
