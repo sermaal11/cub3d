@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_floor_ceiling_color.c                      :+:      :+:    :+:   */
+/*   parsing_fc_color.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:22:41 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/11 14:13:40 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:44:31 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ static int ft_take_rgb_format(t_pgm *pgm)
         return (ft_print_error("Error:\nInvalid RGB value.\n", 1));
     if (ft_check_rgb_value(pgm->ceiling.color, &pgm->ceiling))
         return (ft_print_error("Error:\nInvalid RGB value.\n", 1));
-    
     return (0);
 }
 

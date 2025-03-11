@@ -1,11 +1,8 @@
-// ! Extraccion de colores del map_file
+// TODO: Cosas por hacer
 
-    // map_invalid_colors3.cub 
-        // C 255,200,122
-        // F 122,1262,122
-    // Valor invalido 1262 (chequear ft_take_rgb_format)
+    // ? Extraccion de colores del map_file
 
-    // map_invalid_colors11.cub -> revisar valores entre (0, 255)
+    // * map_invalid_colors11.cub -> int ft_check_fc_before_map(t_pgm *pgm)
         // F 255,200,123
         // X              <-- Caracter no valido entre F y C
         // C 255,200,122
