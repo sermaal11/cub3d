@@ -1,5 +1,12 @@
 {
     "files.associations": {
         "readme:md": "cpp"
-    }
+    },
+    "editor.insertSpaces": false,
+    "editor.rulers": [
+        {
+        "column": 80,
+        "color": "#FF0000"
+        }
+    ]
 }

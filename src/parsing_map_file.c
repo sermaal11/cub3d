@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_file.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:37:47 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/11 23:55:18 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/12 04:26:34 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int ft_validate_textures(t_pgm *pgm)
 int ft_validate_map_file(t_pgm *pgm)
 {
     if (ft_validate_textures(pgm))
-    return (ft_print_error("Error:\nFailed to validate textures.\n", 1));
+        return (ft_print_error("Error:\nFailed to validate textures.\n", 1));
     // ! Revisar caso limite map_invalid_colors11.cub -> int ft_check_fc_before_map(t_pgm *pgm)
     if (ft_validate_floor_ceiling(pgm))
         return (ft_print_error("Error:\nFailed to validate F and C format.\n", 1));
