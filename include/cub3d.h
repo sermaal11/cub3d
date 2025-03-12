@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/11 17:11:25 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/12 13:09:41 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ typedef struct s_vec3
 	int b;
 }               t_vec3;
 
-// typedef struct s_texture
-// {
-// 	char	*no;
-// 	char	*so;
-// 	char	*we;
-// 	char	*ea;
-// }			   t_texture;
+typedef struct s_texture
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+}			   t_texture;
 
 typedef struct s_map
 {
@@ -65,7 +65,7 @@ typedef struct s_pgm
 	t_map_file	map_file;
 	t_vec3		floor;
 	t_vec3		ceiling;
-	// t_texture	texture;
+	t_texture	texture;
     t_map   	map;
 	
 }               t_pgm;
