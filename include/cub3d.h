@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/15 10:53:35 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/15 11:42:39 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define MAP_BUFFER_SIZE 1000000
+# define MAP_BUFF_SIZE 1000000
 
 typedef struct s_vec3
 {
