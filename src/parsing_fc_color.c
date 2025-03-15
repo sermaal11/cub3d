@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_fc_color.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:22:41 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/11 16:44:31 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/15 10:59:26 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int ft_check_fc_amount(t_pgm *pgm)
     return (0);
 }
 
-int ft_check_fc_before_map(t_pgm *pgm)
+int ft_check_id_before_map(t_pgm *pgm)
 {
     int i = 0;
     int map_started = 0;
@@ -59,8 +59,10 @@ int ft_check_fc_before_map(t_pgm *pgm)
         }
         if (line[j] == '\0')
             map_started = 1;
-        if (map_started && (ft_strchr(line, 'F') || ft_strchr(line, 'C')))
-            return (ft_print_error("Error:\nColor (F or C) found after the map.\n", 1));
+        if (map_started && (ft_strchr(line, 'F') || ft_strchr(line, 'C')
+			|| ft_strnstr(line, "NO", 2) || ft_strnstr(line, "SO", 2)
+			|| ft_strnstr(line, "WE", 2) || ft_strnstr(line, "EA", 2)))
+            return (ft_print_error("Error:\nIdentifier after the map.\n", 1));
         i++;
     }
     return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_fc_color_two.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 16:45:52 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/11 16:47:26 by smarin-a         ###   ########.fr       */
+/*   Updated: 2025/03/15 11:03:05 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ int ft_check_rgb_value(char *color, t_vec3 *vec)
     vec->g = ft_extract_rgb_value(&color);
     vec->b = ft_extract_rgb_value(&color);
     if (vec->r == -1 || vec->g == -1 || vec->b == -1)
-        return (ft_print_error("Error:\nInvalid RGB format or out of range.\n", 1));
+        return (ft_print_error("Error:\nValue out of range.\n", 1));
     return (0);
 }

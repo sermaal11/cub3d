@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:14:59 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/12 14:10:44 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/15 11:26:00 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static int	ft_validate_textures(t_pgm *pgm)
 {
 	if (ft_check_texture_amount(pgm))
 		return (ft_print_error("Error:\nInvalid check textures amount.\n", 1));
-	// * 2 Validar posicion de texturas con ft_check_textures_before_map
 
 	// TODO: 3 Validar contenido de texturas con ft_take_textures_content
 	return (0);
@@ -67,17 +66,17 @@ static int	ft_validate_floor_ceiling(t_pgm *pgm)
 {
 	if (ft_check_fc_amount(pgm))
 		return (ft_print_error("Error:\nInvalid check FC amount.\n", 1));
-	if (ft_check_fc_before_map(pgm))
-		return (ft_print_error("Error:\nInvalid check FC position\n", 1));
 	if (ft_take_fc_content(pgm))
 		return (ft_print_error("Error\nInvalid check RGB format\n", 1));
 	return (0);
 }
-
+	
 int	ft_validate_map_file(t_pgm *pgm)
-{
+{	
 	if (ft_validate_identifiers(pgm))
 		return (ft_print_error("Error:\nInvalid identifier.\n", 1));
+	if (ft_check_id_before_map(pgm))
+		return (ft_print_error("Error:\nInvalid check ID position\n", 1));
 	if (ft_validate_textures(pgm))
 		return (ft_print_error("Error:\nInvalid textures format.\n", 1));
 	if (ft_validate_floor_ceiling(pgm))
