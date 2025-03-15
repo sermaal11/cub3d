@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/12 13:09:41 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/12 14:00:20 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct	s_data
 int	ft_parsing(int argc, char *map, t_pgm *pgm);
 
 // * parsing_map_file.c
+// ! static int ft_validate_identifiers(t_pgm *pgm);
 // ! static int ft_validate_floor_ceiling(t_pgm *pgm);
 // ! static int ft_validate_textures(t_pgm *pgm);
 int	ft_validate_map_file(t_pgm *pgm);
