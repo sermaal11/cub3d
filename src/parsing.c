@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:09:59 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/12 14:07:03 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/15 11:42:45 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static int	ft_split_map_file(char *argv_map, t_pgm *pgm)
 	pgm->map_file.fd_map_file = open(argv_map, O_RDONLY);
 	if (pgm->map_file.fd_map_file == -1)
 		return (ft_print_error("Error:\nFailed to open map file. Bad fd\n", 1));
-	line_map = malloc(MAP_BUFFER_SIZE * sizeof(char));
+	line_map = malloc(MAP_BUFF_SIZE * sizeof(char));
 	if (!line_map)
 		return (ft_print_error("Error:\nFailed to allocate memory.\n", 1));
-	line_len_map = read(pgm->map_file.fd_map_file, line_map, MAP_BUFFER_SIZE - 1);
+	line_len_map = read(pgm->map_file.fd_map_file, line_map, MAP_BUFF_SIZE - 1);
 	if (line_len_map <= 0)
 	{
 		free(line_map);

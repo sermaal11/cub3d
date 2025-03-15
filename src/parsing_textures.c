@@ -6,19 +6,19 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 16:58:08 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/12 00:59:53 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/15 11:42:06 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int ft_check_texture_amount(t_pgm *pgm)
+int	ft_check_texture_amount(t_pgm *pgm)
 {
 	int	i;
 	int	no;
 	int	so;
-	int ea;
-	int we;
+	int	ea;
+	int	we;
 
 	i = -1;
 	no = 0;
@@ -37,6 +37,6 @@ int ft_check_texture_amount(t_pgm *pgm)
 			we++;
 	}
 	if (no != 1 || so != 1 || ea != 1 || we != 1)
-		return (ft_print_error("Error:\nInvalid number of textures (NO, SO, EA, WE).\n", 1));
+		return (ft_print_error("Error:\nInvalid number of textures.\n", 1));
 	return (0);
 }
