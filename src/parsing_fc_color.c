@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:22:41 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/17 15:41:40 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:55:22 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,30 +64,26 @@ int	ft_check_id_before_map(t_pgm *pgm)
 }
 
 // ! FUncion con mas de 30 Lineas
-static int	ft_check_rgb_format(char *rgb_format)
+static int	ft_check_rgb_format(char *rgb_format, int num_count)
 {
 	int	i;
 	int	comma_count;
-	int	num_count;
 
 	i = 0;
 	comma_count = 0;
-	num_count = 0;
 	if (!rgb_format)
 		return (ft_print_error("Error:\nRGB format is NULL.\n", 1));
 	while (rgb_format[i])
 	{
 		if (i == 0 || !ft_isdigit(rgb_format[i - 1]))
-			num_count++;
+			num_count += 1;
 		if (ft_isdigit(rgb_format[i]))
 			i++;
-		else if (rgb_format[i] == ',')
-		{
-			if (i == 0 || rgb_format[i + 1] == '\0' || rgb_format[i + 1] == ',')
-				return (ft_print_error("Error:\nUnexpect comma.\n", 1));
+		else if (rgb_format[i] == ',' && (i == 0 || rgb_format[i + 1] == '\0'
+			|| rgb_format[i + 1] == ','))
+			return (ft_print_error("Error:\nUnexpect comma.\n", 1));
+		else if (rgb_format[i] == ',' && i++ >= 0)
 			comma_count++;
-			i++;
-		}
 		else
 			return (ft_print_error("Error:\nOnly digits and commas.\n", 1));
 	}
@@ -98,9 +94,9 @@ static int	ft_check_rgb_format(char *rgb_format)
 
 static int	ft_take_rgb_format(t_pgm *pgm)
 {
-	if (ft_check_rgb_format(pgm->floor.color))
+	if (ft_check_rgb_format(pgm->floor.color, 0))
 		return (ft_print_error("Error:\nInvalid RGB format.\n", 1));
-	if (ft_check_rgb_format(pgm->ceiling.color))
+	if (ft_check_rgb_format(pgm->ceiling.color, 0))
 		return (ft_print_error("Error:\nInvalid RGB format.\n", 1));
 	if (ft_check_rgb_value(pgm->floor.color, &pgm->floor))
 		return (ft_print_error("Error:\nInvalid RGB value.\n", 1));
