@@ -6,28 +6,11 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:14:59 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/17 15:21:28 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:05:34 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-// ToDo: Meter en los archivos de parseo de mapa.
-int	ft_is_map_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	if (!ft_strchr(" 1", line[i]))
-		return (1);
-	while (line[i])
-	{
-		if (!ft_strchr(" 10NSWE", line[i]))
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 static int	ft_validate_identifiers(t_pgm *pgm)
 {
@@ -82,13 +65,12 @@ static int	ft_check_id_order(t_pgm *pgm)
 	return (0);
 }
 
-// TODO: 3 Validar contenido de texturas con ft_take_textures_content
 static int	ft_validate_textures(t_pgm *pgm)
 {
 	if (ft_check_texture_amount(pgm))
 		return (ft_print_error("Error:\nInvalid check textures amount.\n", 1));
-	// if (ft_take_textures_content(pgm))
-	// 	return (ft_print_error("Error\nInvalid check texture format\n", 1));
+	if (ft_take_textures_content(pgm))
+		return (ft_print_error("Error\nInvalid check texture format\n", 1));
 	return (0);
 }
 
@@ -101,7 +83,6 @@ static int	ft_validate_floor_ceiling(t_pgm *pgm)
 	return (0);
 }
 
-// TODO: 3. Validar mapa con todos los casos limite y guradar cada cosa en su sitio.
 int	ft_validate_map_file(t_pgm *pgm)
 {
 	if (ft_validate_identifiers(pgm))
@@ -114,5 +95,7 @@ int	ft_validate_map_file(t_pgm *pgm)
 		return (ft_print_error("Error:\nInvalid textures format.\n", 1));
 	if (ft_validate_floor_ceiling(pgm))
 		return (ft_print_error("Error:\nInvalid FC format.\n", 1));
+	// if (ft_validate_map(pgm))
+	//	return (ft_print_error("Error.\nInvalid map.\n", 1));
 	return (0);
 }

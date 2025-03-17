@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:22:41 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/17 15:55:22 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:38:45 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int	ft_check_rgb_format(char *rgb_format, int num_count)
 		if (ft_isdigit(rgb_format[i]))
 			i++;
 		else if (rgb_format[i] == ',' && (i == 0 || rgb_format[i + 1] == '\0'
-			|| rgb_format[i + 1] == ','))
+				|| rgb_format[i + 1] == ','))
 			return (ft_print_error("Error:\nUnexpect comma.\n", 1));
 		else if (rgb_format[i] == ',' && i++ >= 0)
 			comma_count++;
