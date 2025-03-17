@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/15 11:42:39 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:51:17 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,16 @@ typedef struct	s_data
 
 // * parsing.c
 int	ft_parsing(int argc, char *map, t_pgm *pgm);
+// ! Borrar
+void	print_char_array(char **array);
 
 // * parsing_map_file.c
 // ! static int ft_validate_identifiers(t_pgm *pgm);
 // ! static int ft_validate_floor_ceiling(t_pgm *pgm);
 // ! static int ft_validate_textures(t_pgm *pgm);
 int	ft_validate_map_file(t_pgm *pgm);
+// ToDo: Meter en los archivos de parseo de mapa.
+int	ft_is_map_line(char *line);
 
 // * parsing_fc_color.c
 int ft_check_fc_amount(t_pgm *pgm);
@@ -101,8 +105,11 @@ int ft_check_rgb_value(char *color, t_vec3 *vec);
 
 // * parsing_textures.c
 int ft_check_texture_amount(t_pgm *pgm);
+int	ft_take_textures_content(t_pgm *pgm);
 
 // * utils.c
 int    ft_print_error(char *msg, int error_code);
+// !static void	ft_free_matirx(char **matrix);
+void	ft_free(t_pgm *pgm);
 
 # endif

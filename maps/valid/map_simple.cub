@@ -1,6 +1,6 @@
 
-NO ./textures/wood.xpm
 SO ./textures/door.xpm
+NO ./textures/wood.xpm
 EA ./textures/brick.xpm
 WE ./textures/cave.xpm
 

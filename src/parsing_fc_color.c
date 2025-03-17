@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:22:41 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/15 11:53:57 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:41:40 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	ft_check_fc_amount(t_pgm *pgm)
 int	ft_check_id_before_map(t_pgm *pgm)
 {
 	int		i;
-	int		j;
 	int		map_started;
 	char	*line;
 
@@ -53,24 +52,18 @@ int	ft_check_id_before_map(t_pgm *pgm)
 	while (pgm->map_file.map_file_matrix[i])
 	{
 		line = pgm->map_file.map_file_matrix[i];
-		j = 0;
-		while (line[j])
-		{
-			if (!ft_strchr(" 10NSEW", line[j]))
-				break ;
-			j++;
-		}
-		if (line[j] == '\0')
+		if (ft_is_map_line(line) == 0)
 			map_started = 1;
 		if (map_started && (ft_strchr(line, 'F') || ft_strchr(line, 'C')
-				|| ft_strnstr(line, "NO", 2) || ft_strnstr(line, "SO", 2)
-				|| ft_strnstr(line, "WE", 2) || ft_strnstr(line, "EA", 2)))
-			return (ft_print_error("Error:\nIdentifier after the map.\n", 1));
+				|| ft_strnstr(line, "NO ", 3) || ft_strnstr(line, "SO ", 3)
+				|| ft_strnstr(line, "WE ", 3) || ft_strnstr(line, "EA ", 3)))
+			return (ft_print_error("Error:\nID after the map.\n", 1));
 		i++;
 	}
 	return (0);
 }
 
+// ! FUncion con mas de 30 Lineas
 static int	ft_check_rgb_format(char *rgb_format)
 {
 	int	i;
@@ -84,12 +77,10 @@ static int	ft_check_rgb_format(char *rgb_format)
 		return (ft_print_error("Error:\nRGB format is NULL.\n", 1));
 	while (rgb_format[i])
 	{
+		if (i == 0 || !ft_isdigit(rgb_format[i - 1]))
+			num_count++;
 		if (ft_isdigit(rgb_format[i]))
-		{
-			if (i == 0 || !ft_isdigit(rgb_format[i - 1]))
-				num_count++;
 			i++;
-		}
 		else if (rgb_format[i] == ',')
 		{
 			if (i == 0 || rgb_format[i + 1] == '\0' || rgb_format[i + 1] == ',')

@@ -25,45 +25,6 @@
         // SO ./textures/stone.xpm
         // EA ./textures/brick.xpm
         // WE ./textures/cave.xpm
-    // ! 37_map_invalid_element9.cub (path error) (reviar ft_check_fc_before_map)
-		// NO ./textures/wood.xpm
-		// SO ./textures/stone.xpm
-		// EA ./textures/brick.xpm
-		// WE 							<-- PAth invalido (No path)
-
-		// C 55,200,160
-		// F 122,122,122
-
-		// 11111111111111111
-		// 10000000000000001
-		// 10000000000000001
-		// 10000000000000001
-		// 10000000000000001
-		// 10000000000000001
-		// 10000000N00000001
-		// 10000000000000001
-		// 10000000000000001
-		// 10000000000000001
-		// 10000000000000001
-		// 10000000000000001
-		// 11111111111111111
-        // ! Este me da un error porque me lo tira el parsing de FC
-        // ! Error devuelto por el pgm:
-        // Error:
-        // Color (F or C) found after the map.
-        // Error:
-        // Failed to check F and C position
-        // Error:
-        // Failed to validate F and C format.
-        // Error:
-        // Failed to validate map file.
-    // * 41_map_invalid_element13.cub  (format error)
-        // NO ./textures/wood.xpmg      
-        // C 55,200,160                 <-- C entre texturas
-        // F 122,122,122                <-- F entre texturas
-        // SO ./textures/stone.xpm
-        // EA ./textures/brick.xpm
-        // WE ./textures/cave.xpm
     // * 43_map_invalid_element15.cub  (path error)
         // NO ../textures/wood.xpm      <-- invalid_path
         // SO ./textures/stone.xpm

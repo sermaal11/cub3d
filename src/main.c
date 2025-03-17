@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:42:34 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/15 11:38:08 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:53:22 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_char_array(char **array)
 	}
 }
 
-// ! Print_f de control (borrar funcion print_char_array)
+// ! Printf de control (borrar funcion print_char_array)
 int	main(int argc, char **argv)
 {
 	t_pgm	pgm;
@@ -40,5 +40,6 @@ int	main(int argc, char **argv)
 	print_char_array(pgm.map_file.map_file_matrix);
 	if (pgm.map_file.fd_map_file != -1)
 		close(pgm.map_file.fd_map_file);
+	ft_free(&pgm);
 	return (0);
 }

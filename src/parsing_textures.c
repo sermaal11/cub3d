@@ -6,11 +6,17 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 16:58:08 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/15 11:42:06 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:21:14 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+// int	ft_take_textures_content(t_pgm *pgm)
+// {
+	
+// 	return (0);
+// }
 
 int	ft_check_texture_amount(t_pgm *pgm)
 {
