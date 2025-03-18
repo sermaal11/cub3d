@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 12:35:23 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/18 13:16:02 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:50:23 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,38 @@ int	ft_check_number_of_players(t_pgm *pgm)
 		return (ft_print_error("Error:\nNo player found in map.\n", 1));
 	if (player_count > 1)
 		return (ft_print_error("Error:\nMultiple player found in map.\n", 1));
+	return (0);
+}
+
+static int	ft_is_invalid_position(char **map, int x, int y)
+{
+	if (x == 0 || y == 0 || !map[y + 1] || !map[y][x + 1])
+		return (1);
+	if (map[y - 1][x] == ' ' || map[y + 1][x] == ' ' ||
+		map[y][x - 1] == ' ' || map[y][x + 1] == ' ')
+		return (1);
+	return (0);
+}
+
+int ft_check_player_position(t_pgm *pgm)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (pgm->map.map[i])
+	{
+		j = 0;
+		while (pgm->map.map[i][j])
+		{
+			if (ft_is_player_char(pgm->map.map[i][j]))
+			{
+				if (ft_is_invalid_position(pgm->map.map, j, i))
+					return (ft_print_error("Error:\nInvalid position.\n", 1));
+			}
+			j++;
+		}
+		i++;
+	}
 	return (0);
 }

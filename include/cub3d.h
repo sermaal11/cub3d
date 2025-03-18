@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/18 13:15:19 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:16:27 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int	ft_validate_map(t_pgm *pgm);
 // * parsing_map_two.c
 // ! static int	ft_is_player_char(char c);
 int	ft_check_number_of_players(t_pgm *pgm);
+int ft_check_player_position(t_pgm *pgm);
 
 // * utils.c
 int    ft_print_error(char *msg, int error_code);
