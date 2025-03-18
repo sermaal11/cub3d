@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:14:59 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/18 11:07:52 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 12:33:43 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ int	ft_validate_map_file(t_pgm *pgm)
 		return (ft_print_error("Error:\nInvalid textures format.\n", 1));
 	if (ft_validate_floor_ceiling(pgm))
 		return (ft_print_error("Error:\nInvalid FC format.\n", 1));
+	if (ft_extract_map(pgm))
+		return (ft_print_error("Error.\nInvalid map extraction.\n", 1));
 	if (ft_validate_map(pgm))
-		return (ft_print_error("Error.\nInvalid map.\n", 1));
+		return (ft_print_error("Error.\nInvalid map format.\n", 1));
 	return (0);
 }

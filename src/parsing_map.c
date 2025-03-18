@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:01:54 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/18 12:08:15 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 12:36:12 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	ft_find_map_start(char **map_file)
 	return (-1);
 }
 
-int	ft_validate_map(t_pgm *pgm)
+int	ft_extract_map(t_pgm *pgm)
 {
 	int		map_start;
 	int		map_lines;
@@ -68,5 +68,12 @@ int	ft_validate_map(t_pgm *pgm)
 	}
 	pgm->map.map[i] = NULL;
 	pgm->map.copy_map[i] = NULL;
+	return (0);
+}
+
+int	ft_validate_map(t_pgm *pgm)
+{
+	if (ft_check_number_of_players(pgm))
+		return (ft_print_error("Error:\nInvalid number of players.\n", 1));
 	return (0);
 }

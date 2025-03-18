@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:42:34 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/18 12:08:25 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 12:55:37 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	main(int argc, char **argv)
 	if (ft_parsing(argc, argv[1], &pgm))
 		return (1);
 	//print_char_array(pgm.map_file.map_file_matrix);
-	//printf("Mapa:\n");
-	// print_char_array(pgm->map.map);
-	// printf("Mapa copia:\n");
-	// print_char_array(pgm->map.copy_map);
+	printf("Mapa:\n");
+	print_char_array(pgm.map.map);
+	printf("\nMapa copia:\n");
+	print_char_array(pgm.map.copy_map);
 	if (pgm.map_file.fd_map_file != -1)
 		close(pgm.map_file.fd_map_file);
 	ft_free(&pgm);

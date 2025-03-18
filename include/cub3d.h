@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/18 11:09:07 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 12:51:56 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,13 @@ int	ft_take_textures_content(t_pgm *pgm);
 
 // * parsing_map.c
 int	ft_is_map_line(char *line);
+// ! static int	ft_find_map_start(char **map_file);
+int	ft_extract_map(t_pgm *pgm);
 int	ft_validate_map(t_pgm *pgm);
+
+// * parsing_map_two.c
+// ! static int	ft_is_player_char(char c);
+int	ft_check_number_of_players(t_pgm *pgm);
 
 // * utils.c
 int    ft_print_error(char *msg, int error_code);
