@@ -1,11 +1,9 @@
 // TODO: Cosas por hacer
 
     // ? Extraccion de colores del map_file
-
     // ** TODOS LOS MAPAS BIEN FILTRADOS POR COLORES
 
     // ? Extraccion de las texturas del map file
-
     // ** TODOS LOS MAPAS BIEN FILTRADOS POR texturas
 
 	// ? Extraccion de la matriz del map file
