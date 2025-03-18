@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:01:54 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/18 14:15:46 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:31:17 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ int	ft_validate_map(t_pgm *pgm)
 		return (ft_print_error("Error:\nInvalid number of players.\n", 1));
 	if (ft_check_player_position(pgm))
 		return (ft_print_error("Error:\nInvalid player position.\n", 1));
+	// if (ft_validate_fully_closed_map(pgm))
+	// 	return (ft_print_error("Error:\nMap not fully closed.\n", 1));
 	return (0);
 }
