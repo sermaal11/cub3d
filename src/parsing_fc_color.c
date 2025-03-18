@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:22:41 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/17 17:38:45 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:24:52 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ int	ft_check_fc_amount(t_pgm *pgm)
 	i = -1;
 	pgm->map_file.count_f = 0;
 	pgm->map_file.count_c = 0;
-	while (pgm->map_file.map_file_matrix[++i])
+	while (pgm->map_file.file_matrix[++i])
 	{
 		j = -1;
-		while (pgm->map_file.map_file_matrix[i][++j])
+		while (pgm->map_file.file_matrix[i][++j])
 		{
-			if (pgm->map_file.map_file_matrix[i][j] == 'F')
+			if (pgm->map_file.file_matrix[i][j] == 'F')
 				pgm->map_file.count_f++;
-			else if (pgm->map_file.map_file_matrix[i][j] == 'C')
+			else if (pgm->map_file.file_matrix[i][j] == 'C')
 				pgm->map_file.count_c++;
 		}
 	}
@@ -49,9 +49,9 @@ int	ft_check_id_before_map(t_pgm *pgm)
 
 	i = 0;
 	map_started = 0;
-	while (pgm->map_file.map_file_matrix[i])
+	while (pgm->map_file.file_matrix[i])
 	{
-		line = pgm->map_file.map_file_matrix[i];
+		line = pgm->map_file.file_matrix[i];
 		if (ft_is_map_line(line) == 0)
 			map_started = 1;
 		if (map_started && (ft_strchr(line, 'F') || ft_strchr(line, 'C')
@@ -63,7 +63,6 @@ int	ft_check_id_before_map(t_pgm *pgm)
 	return (0);
 }
 
-// ! FUncion con mas de 30 Lineas
 static int	ft_check_rgb_format(char *rgb_format, int num_count)
 {
 	int	i;
@@ -112,9 +111,9 @@ int	ft_take_fc_content(t_pgm *pgm)
 	char	*color_value;
 
 	i = -1;
-	while (pgm->map_file.map_file_matrix[++i])
+	while (pgm->map_file.file_matrix[++i])
 	{
-		line = pgm->map_file.map_file_matrix[i];
+		line = pgm->map_file.file_matrix[i];
 		if (line[0] == 'F' || line[0] == 'C')
 		{
 			color_value = ft_strchr(line, ' ');

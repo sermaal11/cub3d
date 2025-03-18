@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:14:59 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/18 12:33:43 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:24:52 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int	ft_validate_identifiers(t_pgm *pgm)
 	char	*line;
 
 	i = 0;
-	while (pgm->map_file.map_file_matrix[i])
+	while (pgm->map_file.file_matrix[i])
 	{
-		line = pgm->map_file.map_file_matrix[i];
+		line = pgm->map_file.file_matrix[i];
 		if (ft_strncmp(line, "NO ", 3) == 0
 			|| ft_strncmp(line, "SO ", 3) == 0
 			|| ft_strncmp(line, "EA ", 3) == 0
@@ -46,9 +46,9 @@ static int	ft_check_id_order(t_pgm *pgm)
 
 	i = -1;
 	block_type = -1;
-	while (pgm->map_file.map_file_matrix[++i])
+	while (pgm->map_file.file_matrix[++i])
 	{
-		line = pgm->map_file.map_file_matrix[i];
+		line = pgm->map_file.file_matrix[i];
 		if (!line[0] || ft_is_map_line(line) == 0)
 			break ;
 		if (!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2)

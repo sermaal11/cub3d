@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/18 15:26:31 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:33:56 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,14 @@ typedef struct s_map
 {
 	char	**map;
     char	**copy_map;
-	
 }               t_map;
 
 typedef struct s_map_file
 {
-	char	**map_file_matrix;
+	char	**file_matrix;
 	int		fd_map_file;
 	int		count_f;
     int		count_c;
-	
 }				t_map_file;
 
 typedef struct s_game
@@ -88,15 +86,16 @@ typedef struct	s_data
 	char	*addr;
 }				t_data;
 
-// * parsing.c
+// * parsing.c (3 funciones)
 int	ft_parsing(int argc, char *map, t_pgm *pgm);
-// ! Borrar
-void	print_char_array(char **array);
+// ! static int	ft_split_map_file(char *argv_map, t_pgm *pgm);
+int	ft_validate_extension(char *file, char *ext);
 
-// * parsing_map_file.c (4 funciones)
+// * parsing_map_file.c (5 funciones)
 // ! static int ft_validate_identifiers(t_pgm *pgm);
-// ! static int ft_validate_floor_ceiling(t_pgm *pgm);
+// ! static int	ft_check_id_order(t_pgm *pgm);
 // ! static int ft_validate_textures(t_pgm *pgm);
+// ! static int ft_validate_floor_ceiling(t_pgm *pgm);
 int	ft_validate_map_file(t_pgm *pgm);
 
 // * parsing_fc_color.c (5 funciones)
@@ -110,7 +109,8 @@ int ft_take_fc_content(t_pgm *pgm);
 // ! static int ft_extract_rgb_value(char **color_str);
 int ft_check_rgb_value(char *color, t_vec3 *vec);
 
-// * parsing_textures.c (2 funciones)
+// * parsing_textures.c (3 funciones)
+// ! static int	ft_validate_textures_content(t_pgm *pgm);
 int ft_check_texture_amount(t_pgm *pgm);
 int	ft_take_textures_content(t_pgm *pgm);
 

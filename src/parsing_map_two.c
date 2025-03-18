@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 12:35:23 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/18 15:44:00 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:04:27 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ int	ft_check_player_position(t_pgm *pgm)
 
 // int	ft_validate_fully_closed_map(t_pgm *pgm)
 // {
-	
+//	
 // 	return (0);
 // }

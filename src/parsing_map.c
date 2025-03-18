@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:01:54 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/18 15:44:04 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:27:06 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ static int	ft_find_map_start(char **map_file)
 
 int	ft_extract_map(t_pgm *pgm)
 {
-	int		map_start;
+	int		start;
 	int		map_lines;
 	int		i;
 
-	map_start = ft_find_map_start(pgm->map_file.map_file_matrix);
-	if (map_start == -1)
+	start = ft_find_map_start(pgm->map_file.file_matrix);
+	if (start == -1)
 		return (ft_print_error("Error:\nMap not found in file.\n", 1));
 	map_lines = 0;
-	while (pgm->map_file.map_file_matrix[map_start + map_lines])
+	while (pgm->map_file.file_matrix[start + map_lines])
 		map_lines++;
 	pgm->map.map = (char **)malloc(sizeof(char *) * (map_lines + 1));
 	pgm->map.copy_map = (char **)malloc(sizeof(char *) * (map_lines + 1));
@@ -61,8 +61,8 @@ int	ft_extract_map(t_pgm *pgm)
 	i = -1;
 	while (++i < map_lines)
 	{
-		pgm->map.map[i] = ft_strdup(pgm->map_file.map_file_matrix[map_start + i]);
-		pgm->map.copy_map[i] = ft_strdup(pgm->map_file.map_file_matrix[map_start + i]);
+		pgm->map.map[i] = ft_strdup(pgm->map_file.file_matrix[start + i]);
+		pgm->map.copy_map[i] = ft_strdup(pgm->map_file.file_matrix[start + i]);
 		if (!pgm->map.map[i] || !pgm->map.copy_map[i])
 			return (ft_print_error("Error:\nFailed malloc for map rows.\n", 1));
 	}
