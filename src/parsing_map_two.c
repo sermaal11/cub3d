@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 12:35:23 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/18 12:51:28 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:16:02 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,25 @@ static int	ft_is_player_char(char c)
 
 int	ft_check_number_of_players(t_pgm *pgm)
 {
-	int i;
-	int j;
-	int player_count;
+	int	i;
+	int	j;
+	int	player_count;
 
-	i = 0;
+	i = -1;
 	player_count = 0;
-	while (pgm->map.copy_map[i])
+	while (pgm->map.copy_map[++i])
 	{
-		j = 0;
-		while (pgm->map.copy_map[i][j])
+		j = -1;
+		while (pgm->map.copy_map[i][++j])
 		{
 			if (ft_is_player_char(pgm->map.copy_map[i][j]))
+			{
+				pgm->game.x_plyr = i;
+				pgm->game.y_plyr = j;
+				pgm->game.dir = pgm->map.copy_map[i][j];
 				player_count++;
-			j++;
+			}
 		}
-		i++;
 	}
 	if (player_count == 0)
 		return (ft_print_error("Error:\nNo player found in map.\n", 1));

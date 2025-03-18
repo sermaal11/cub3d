@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/18 12:51:56 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:15:19 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,15 @@ typedef struct s_map_file
 	
 }				t_map_file;
 
+typedef struct s_game
+{
+	int 	x_plyr;
+	int 	y_plyr;
+	char	dir;
+	
+}				t_game;
+
+
 typedef struct s_pgm
 {
 	t_map_file	map_file;
@@ -66,6 +75,7 @@ typedef struct s_pgm
 	t_vec3		ceiling;
 	t_texture	texture;
     t_map   	map;
+	t_game  	game;
 	
 }               t_pgm;
 
