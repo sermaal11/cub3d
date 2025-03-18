@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/17 17:41:34 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:09:07 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	ft_take_textures_content(t_pgm *pgm);
 
 // * parsing_map.c
 int	ft_is_map_line(char *line);
+int	ft_validate_map(t_pgm *pgm);
 
 // * utils.c
 int    ft_print_error(char *msg, int error_code);
