@@ -1,5 +1,0 @@
-// ** PARSEO DE FC (HECHO)
-
-// ** PARSEO DE TEXTURAS (HECHO)
-
-// ** PARSEO DE MAPA
