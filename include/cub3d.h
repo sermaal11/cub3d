@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/18 17:33:56 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:11:03 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_texture
 typedef struct s_map
 {
 	char	**map;
-    char	**copy_map;
+    char	**copy;
 }               t_map;
 
 typedef struct s_map_file
@@ -86,46 +86,51 @@ typedef struct	s_data
 	char	*addr;
 }				t_data;
 
-// * parsing.c (3 funciones)
+// ? parsing.c (3 funciones)
 int	ft_parsing(int argc, char *map, t_pgm *pgm);
 // ! static int	ft_split_map_file(char *argv_map, t_pgm *pgm);
 int	ft_validate_extension(char *file, char *ext);
 
-// * parsing_map_file.c (5 funciones)
+// ! parsing_map_file.c (5 funciones)
 // ! static int ft_validate_identifiers(t_pgm *pgm);
 // ! static int	ft_check_id_order(t_pgm *pgm);
 // ! static int ft_validate_textures(t_pgm *pgm);
 // ! static int ft_validate_floor_ceiling(t_pgm *pgm);
 int	ft_validate_map_file(t_pgm *pgm);
 
-// * parsing_fc_color.c (5 funciones)
+// ! parsing_fc_color.c (5 funciones)
 int ft_check_fc_amount(t_pgm *pgm);
 int ft_check_id_before_map(t_pgm *pgm);
 // ! static int ft_check_rgb_format(char *rgb_format);
 // ! static int ft_take_rgb_format(t_pgm *pgm);
 int ft_take_fc_content(t_pgm *pgm);
 
-// * parsing_fc_color_two.c (2 funciones)
+// ? parsing_fc_color_two.c (2 funciones)
 // ! static int ft_extract_rgb_value(char **color_str);
 int ft_check_rgb_value(char *color, t_vec3 *vec);
 
-// * parsing_textures.c (3 funciones)
+// ? parsing_textures.c (3 funciones)
 // ! static int	ft_validate_textures_content(t_pgm *pgm);
 int ft_check_texture_amount(t_pgm *pgm);
 int	ft_take_textures_content(t_pgm *pgm);
 
-// * parsing_map.c (4 funciones)
+// ? parsing_map.c (4 funciones)
 int	ft_is_map_line(char *line);
 // ! static int	ft_find_map_start(char **map_file);
 int	ft_extract_map(t_pgm *pgm);
 int	ft_validate_map(t_pgm *pgm);
 
-// * parsing_map_two.c (4 funciones)
+// ! parsing_map_two.c (5 funciones)
 // ! static int	ft_is_player_char(char c);
 int	ft_check_number_of_players(t_pgm *pgm);
 // ! static int	ft_is_invalid_position(char **copy_map, int x, int y);
 int ft_check_player_position(t_pgm *pgm);
 int	ft_validate_fully_closed_map(t_pgm *pgm);
+
+// ? parsing_map_three.c
+int	ft_is_map_open(int row, int col, char **map);
+// ! static void	ft_get_map_dimensions(char **map, int *rows, int *cols);
+int	ft_is_map_open_two(t_pgm *pgm);
 
 // * utils.c (3 funciones)
 int    ft_print_error(char *msg, int error_code);

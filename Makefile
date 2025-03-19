@@ -30,6 +30,7 @@ SRC =	main.c \
 		parsing_map_file.c \
 		parsing_fc_color.c \
 		parsing_textures.c \
+		parsing_map_three.c \
 		parsing_fc_color_two.c
 
 # Archivos objeto

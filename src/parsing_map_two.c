@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 12:35:23 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/18 17:04:27 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:10:50 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ int	ft_check_number_of_players(t_pgm *pgm)
 
 	i = -1;
 	player_count = 0;
-	while (pgm->map.copy_map[++i])
+	while (pgm->map.copy[++i])
 	{
 		j = -1;
-		while (pgm->map.copy_map[i][++j])
+		while (pgm->map.copy[i][++j])
 		{
-			if (ft_is_player_char(pgm->map.copy_map[i][j]))
+			if (ft_is_player_char(pgm->map.copy[i][j]))
 			{
 				pgm->game.x_plyr = i;
 				pgm->game.y_plyr = j;
-				pgm->game.dir = pgm->map.copy_map[i][j];
+				pgm->game.dir = pgm->map.copy[i][j];
 				player_count++;
 			}
 		}
@@ -46,12 +46,12 @@ int	ft_check_number_of_players(t_pgm *pgm)
 	return (0);
 }
 
-static int	ft_is_invalid_position(char **copy_map, int x, int y)
+static int	ft_is_invalid_position(char **copy, int x, int y)
 {
-	if (x == 0 || y == 0 || !copy_map[y + 1] || !copy_map[y][x + 1])
+	if (x == 0 || y == 0 || !copy[y + 1] || !copy[y][x + 1])
 		return (1);
-	if (copy_map[y - 1][x] == ' ' || copy_map[y + 1][x] == ' ' ||
-		copy_map[y][x - 1] == ' ' || copy_map[y][x + 1] == ' ' )
+	if (copy[y - 1][x] == ' ' || copy[y + 1][x] == ' ' ||
+		copy[y][x - 1] == ' ' || copy[y][x + 1] == ' ' )
 		return (1);
 	return (0);
 }
@@ -62,14 +62,14 @@ int	ft_check_player_position(t_pgm *pgm)
 	int	j;
 
 	i = 0;
-	while (pgm->map.copy_map[i])
+	while (pgm->map.copy[i])
 	{
 		j = 0;
-		while (pgm->map.copy_map[i][j])
+		while (pgm->map.copy[i][j])
 		{
-			if (ft_is_player_char(pgm->map.copy_map[i][j]))
+			if (ft_is_player_char(pgm->map.copy[i][j]))
 			{
-				if (ft_is_invalid_position(pgm->map.copy_map, j, i))
+				if (ft_is_invalid_position(pgm->map.copy, j, i))
 					return (ft_print_error("Error:\nInvalid position.\n", 1));
 			}
 			j++;
@@ -79,8 +79,13 @@ int	ft_check_player_position(t_pgm *pgm)
 	return (0);
 }
 
-// int	ft_validate_fully_closed_map(t_pgm *pgm)
-// {
-//	
-// 	return (0);
-// }
+int	ft_validate_fully_closed_map(t_pgm *pgm)
+{
+	if (pgm->game.x_plyr < 0 || pgm->game.y_plyr < 0)
+		return (ft_print_error("Error:\nNo player found in map.\n", 1));
+	if (ft_is_map_open(pgm->game.x_plyr, pgm->game.y_plyr, pgm->map.copy))
+		return (ft_print_error("Error:\nMap not closed.\n", 1));
+	if (ft_is_map_open_two(pgm))
+		return (1);
+	return (0);
+}

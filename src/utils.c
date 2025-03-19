@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:33:54 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/18 17:24:52 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:10:50 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	ft_free(t_pgm *pgm)
 		ft_free_matrix(pgm->map_file.file_matrix);
 	if (pgm->map.map)
 		ft_free_matrix(pgm->map.map);
-	if (pgm->map.copy_map)
-		ft_free_matrix(pgm->map.copy_map);
+	if (pgm->map.copy)
+		ft_free_matrix(pgm->map.copy);
 	if (pgm->texture.no)
 		free(pgm->texture.no);
 	if (pgm->texture.so)
