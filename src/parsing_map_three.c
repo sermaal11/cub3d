@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:23:30 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/19 11:10:50 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:31:22 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	ft_get_map_dimensions(char **map, int *rows, int *cols)
 	}
 }
 
-int	ft_is_map_open(int row, int col, char **map)
+int	ft_is_map_open_ext(int row, int col, char **map)
 {
 	int	rows;
 	int	cols;
@@ -42,18 +42,18 @@ int	ft_is_map_open(int row, int col, char **map)
 	if (map[row][col] == '1' || map[row][col] == 'X' || map[row][col] == ' ')
 		return (0);
 	map[row][col] = 'X';
-	if (ft_is_map_open(row - 1, col, map))
+	if (ft_is_map_open_ext(row - 1, col, map))
 		return (1);
-	if (ft_is_map_open(row + 1, col, map))
+	if (ft_is_map_open_ext(row + 1, col, map))
 		return (1);
-	if (ft_is_map_open(row, col - 1, map))
+	if (ft_is_map_open_ext(row, col - 1, map))
 		return (1);
-	if (ft_is_map_open(row, col + 1, map))
+	if (ft_is_map_open_ext(row, col + 1, map))
 		return (1);
 	return (0);
 }
 
-int	ft_is_map_open_two(t_pgm *pgm)
+int	ft_is_map_open_int(t_pgm *pgm)
 {
 	int i;
 	int j;
@@ -69,8 +69,32 @@ int	ft_is_map_open_two(t_pgm *pgm)
 				(pgm->map.copy[i + 1] && pgm->map.copy[i + 1][j] == 'X') ||
 				(j > 0 && pgm->map.copy[i][j - 1] == 'X') ||
 				(pgm->map.copy[i][j + 1] && pgm->map.copy[i][j + 1] == 'X')))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	ft_outside_element(t_pgm *pgm)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (pgm->map.copy[i])
+	{
+		j = 0;
+		while (pgm->map.copy[i][j])
+		{
+			// Si encontramos algo que no sea 'X', '1' o un espacio, entonces es inválido
+			if (pgm->map.copy[i][j] != 'X' && pgm->map.copy[i][j] != '1' &&
+				!ft_isspace(pgm->map.copy[i][j]))
 			{
-				return (ft_print_error("Error:\nMap not closed.\n", 1));
+				printf("Error: Caracter inválido '%c' en [%d, %d]\n",
+					   pgm->map.copy[i][j], i, j);
+				return (ft_print_error("Error:\nInvalid element outside the map.\n", 1));
 			}
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 12:35:23 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/19 11:10:50 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:21:06 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,11 @@ int	ft_validate_fully_closed_map(t_pgm *pgm)
 {
 	if (pgm->game.x_plyr < 0 || pgm->game.y_plyr < 0)
 		return (ft_print_error("Error:\nNo player found in map.\n", 1));
-	if (ft_is_map_open(pgm->game.x_plyr, pgm->game.y_plyr, pgm->map.copy))
-		return (ft_print_error("Error:\nMap not closed.\n", 1));
-	if (ft_is_map_open_two(pgm))
-		return (1);
+	if (ft_is_map_open_ext(pgm->game.x_plyr, pgm->game.y_plyr, pgm->map.copy))
+		return (ft_print_error("Error:\nMap not closed exterior border.\n", 1));
+	if (ft_is_map_open_int(pgm))
+		return (ft_print_error("Error:\nMap not closed interior border.\n", 1));
+	if (ft_outside_element(pgm))
+		return (ft_print_error("Error:\nMap has outside elements.\n", 1));
 	return (0);
 }
