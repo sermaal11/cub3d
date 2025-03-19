@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/19 11:49:00 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/19 12:11:39 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct s_game
 	char	dir;
 }				t_game;
 
-
 typedef struct s_pgm
 {
 	t_map_file	map_file;
@@ -75,15 +74,6 @@ typedef struct s_pgm
 	t_game  	game;
 	
 }               t_pgm;
-
-typedef struct	s_data 
-{
-	void	*img;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	char	*addr;
-}				t_data;
 
 // * parsing.c
 // ? (3 funciones)
@@ -141,9 +131,10 @@ int	ft_is_map_open_int(t_pgm *pgm);
 int	ft_outside_element(t_pgm *pgm);
 
 // * utils.c 
-// ? (3 funciones)
+// ? (4 funciones)
 int    ft_print_error(char *msg, int error_code);
 // ! static void	ft_free_matirx(char **matrix);
 void	ft_free(t_pgm *pgm);
+void	ft_init_struct_parsing(t_pgm *pgm);
 
 # endif

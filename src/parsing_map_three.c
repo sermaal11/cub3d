@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:23:30 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/19 11:45:46 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:55:26 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	ft_outside_element(t_pgm *pgm)
 			if (pgm->map.copy[i][j] != 'X' && pgm->map.copy[i][j] != '1' &&
 				!ft_isspace(pgm->map.copy[i][j]))
 			{
-				printf("Error:\n: Invalid '%c' in [%d, %d]\n",
+				printf("Error:\nInvalid '%c' in [%d, %d]\n",
 					pgm->map.copy[i][j], i, j);
 				return (ft_print_error("Error:\nInvalid element outside map.\n",
 						1));
