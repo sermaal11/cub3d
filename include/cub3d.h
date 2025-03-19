@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/19 11:25:15 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:49:00 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct s_game
 	int 	x_plyr;
 	int 	y_plyr;
 	char	dir;
-	
 }				t_game;
 
 
@@ -135,6 +134,7 @@ int ft_check_player_position(t_pgm *pgm);
 int	ft_validate_fully_closed_map(t_pgm *pgm);
 
 // ? parsing_map_three.c
+// ? (4 funciones)
 // ! static void	ft_get_map_dimensions(char **map, int *rows, int *cols);
 int	ft_is_map_open_ext(int row, int col, char **map);
 int	ft_is_map_open_int(t_pgm *pgm);

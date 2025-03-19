@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:23:30 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/19 11:31:22 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:45:46 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	ft_is_map_open_ext(int row, int col, char **map)
 
 int	ft_is_map_open_int(t_pgm *pgm)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (pgm->map.copy[i])
@@ -79,8 +79,8 @@ int	ft_is_map_open_int(t_pgm *pgm)
 
 int	ft_outside_element(t_pgm *pgm)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (pgm->map.copy[i])
@@ -88,13 +88,13 @@ int	ft_outside_element(t_pgm *pgm)
 		j = 0;
 		while (pgm->map.copy[i][j])
 		{
-			// Si encontramos algo que no sea 'X', '1' o un espacio, entonces es inválido
 			if (pgm->map.copy[i][j] != 'X' && pgm->map.copy[i][j] != '1' &&
 				!ft_isspace(pgm->map.copy[i][j]))
 			{
-				printf("Error: Caracter inválido '%c' en [%d, %d]\n",
-					   pgm->map.copy[i][j], i, j);
-				return (ft_print_error("Error:\nInvalid element outside the map.\n", 1));
+				printf("Error:\n: Invalid '%c' in [%d, %d]\n",
+					pgm->map.copy[i][j], i, j);
+				return (ft_print_error("Error:\nInvalid element outside map.\n",
+						1));
 			}
 			j++;
 		}
