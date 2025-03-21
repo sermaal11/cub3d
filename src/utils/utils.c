@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:33:54 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/21 03:09:08 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/21 12:11:49 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ void	ft_free(t_pgm *pgm)
 	if (pgm->ceiling.color)
 		free(pgm->ceiling.color);
 }
-
