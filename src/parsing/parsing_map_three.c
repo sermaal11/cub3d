@@ -6,11 +6,11 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:23:30 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/19 11:55:26 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/21 02:59:33 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d.h"
 
 static void	ft_get_map_dimensions(char **map, int *rows, int *cols)
 {

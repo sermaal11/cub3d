@@ -6,11 +6,11 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:14:59 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/18 17:24:52 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/21 02:59:33 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d.h"
 
 static int	ft_validate_identifiers(t_pgm *pgm)
 {

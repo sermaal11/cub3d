@@ -6,11 +6,11 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:33:54 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/19 12:09:50 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/21 02:59:33 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d.h"
 
 int	ft_print_error(char *msg, int error_code)
 {

@@ -5,7 +5,7 @@ NAME = cub3D
 CC = gcc
 
 # Flags de compilación
-CFLAGS = -g3 -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -g3 -Wall -Wextra -Werror -Iinclude
 
 # Minilibx
 MLX_PATH = ./minilibx-linux/
@@ -24,14 +24,14 @@ OBJ_DIR = obj
 # Archivos fuente
 SRC =	main.c \
 		utils.c \
-		parsing.c \
-		parsing_map.c \
-		parsing_map_two.c \
-		parsing_map_file.c \
-		parsing_fc_color.c \
-		parsing_textures.c \
-		parsing_map_three.c \
-		parsing_fc_color_two.c
+		parsing/parsing.c \
+		parsing/parsing_map.c \
+		parsing/parsing_map_two.c \
+		parsing/parsing_map_file.c \
+		parsing/parsing_fc_color.c \
+		parsing/parsing_textures.c \
+		parsing/parsing_map_three.c \
+		parsing/parsing_fc_color_two.c
 
 # Archivos objeto
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
@@ -55,7 +55,8 @@ $(MLX):
 	@make -C $(MLX_PATH)
 
 # Compilar archivos fuente a objetos
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Crear el directorio de objetos si no existe
