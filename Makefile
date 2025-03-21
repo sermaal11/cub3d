@@ -5,7 +5,7 @@ NAME = cub3D
 CC = gcc
 
 # Flags de compilación
-CFLAGS = -g3 -Wall -Wextra -Werror -Iinclude
+CFLAGS = -g3 -Wall -Wextra -Werror -Iinclude -Iutils
 
 # Minilibx
 MLX_PATH = ./minilibx-linux/
@@ -23,17 +23,16 @@ OBJ_DIR = obj
 
 # Archivos fuente
 SRC =	main.c \
-		utils.c \
+		utils/utils.c \
+		utils/parsing_utils.c \
 		parsing/parsing.c \
 		parsing/parsing_map.c \
-		parsing/parsing_utils.c \
 		parsing/parsing_map_two.c \
 		parsing/parsing_map_file.c \
 		parsing/parsing_fc_color.c \
 		parsing/parsing_textures.c \
 		parsing/parsing_map_three.c \
 		parsing/parsing_fc_color_two.c
-
 
 # Archivos objeto
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
