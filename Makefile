@@ -26,12 +26,14 @@ SRC =	main.c \
 		utils.c \
 		parsing/parsing.c \
 		parsing/parsing_map.c \
+		parsing/parsing_utils.c \
 		parsing/parsing_map_two.c \
 		parsing/parsing_map_file.c \
 		parsing/parsing_fc_color.c \
 		parsing/parsing_textures.c \
 		parsing/parsing_map_three.c \
 		parsing/parsing_fc_color_two.c
+
 
 # Archivos objeto
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

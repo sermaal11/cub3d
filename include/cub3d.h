@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/19 12:11:39 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/03/21 03:10:57 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,7 @@ int	ft_extract_map(t_pgm *pgm);
 int	ft_validate_map(t_pgm *pgm);
 
 // * parsing_map_two.c
-// ! (5 funciones)
-// ! static int	ft_is_player_char(char c);
+// ? (4 funciones)
 int	ft_check_number_of_players(t_pgm *pgm);
 // ! static int	ft_is_invalid_position(char **copy_map, int x, int y);
 int ft_check_player_position(t_pgm *pgm);
@@ -130,11 +129,14 @@ int	ft_is_map_open_ext(int row, int col, char **map);
 int	ft_is_map_open_int(t_pgm *pgm);
 int	ft_outside_element(t_pgm *pgm);
 
+// * parsing_utils.c
+void	ft_init_struct_parsing(t_pgm *pgm);
+int		ft_is_player_char(char c);
+
 // * utils.c 
-// ? (4 funciones)
+// ? (3 funciones)
 int    ft_print_error(char *msg, int error_code);
 // ! static void	ft_free_matirx(char **matrix);
 void	ft_free(t_pgm *pgm);
-void	ft_init_struct_parsing(t_pgm *pgm);
 
 # endif
