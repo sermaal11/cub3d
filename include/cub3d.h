@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/21 03:10:57 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/04/02 11:32:57 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 # include <math.h>
 
 # define MAP_BUFF_SIZE 1000000
+
+typedef struct s_corner
+{
+	char	upright;
+	char	upleft;
+	char	downright;
+	char	downleft;
+}			   t_corner;
 
 typedef struct s_vec3
 {
