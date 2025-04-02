@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/02 11:32:57 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:02:58 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ int	ft_outside_element(t_pgm *pgm);
 // * parsing_utils.c
 void	ft_init_struct_parsing(t_pgm *pgm);
 int		ft_is_player_char(char c);
+int		ft_look_around(char **copy, int x, int y);
 
 // * utils.c 
 // ? (3 funciones)

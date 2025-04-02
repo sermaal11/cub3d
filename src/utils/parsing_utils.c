@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 03:05:40 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/21 12:11:35 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:02:42 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,28 @@ void	ft_init_struct_parsing(t_pgm *pgm)
 int	ft_is_player_char(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+int	ft_look_around(char **copy, int x, int y)
+{
+	t_corner	corner;
+
+	corner.upright = 'V';
+	corner.upleft = 'V';
+	corner.downright = 'V';
+	corner.downleft = 'V';
+	if (copy[x + 1][y + 1])
+		corner.upright = copy[x + 1][y + 1];
+	if (copy[x - 1][y + 1])
+		corner.upleft = copy[x - 1][y + 1];
+	if (copy[x + 1][y - 1])
+		corner.downright = copy[x + 1][y - 1];
+	if (copy[x - 1][y - 1])
+		corner.downleft = copy[x - 1][y - 1];
+	if (corner.upright == ' ' || corner.upleft == ' '
+		|| corner.downright == ' ' || corner.downleft == ' '
+		|| corner.upright == 'V' || corner.upleft == 'V'
+		|| corner.downright == 'V' || corner.downleft == 'V')
+		return (1);
+	return (0);
 }
