@@ -25,6 +25,7 @@ OBJ_DIR = obj
 SRC =	main.c \
 		utils/utils.c \
 		utils/parsing_utils.c \
+		utils/rendering_utils.c \
 		parsing/parsing.c \
 		parsing/parsing_map.c \
 		parsing/parsing_map_two.c \
@@ -32,7 +33,8 @@ SRC =	main.c \
 		parsing/parsing_fc_color.c \
 		parsing/parsing_textures.c \
 		parsing/parsing_map_three.c \
-		parsing/parsing_fc_color_two.c
+		parsing/parsing_fc_color_two.c \
+		rendering/window.c
 
 # Archivos objeto
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
