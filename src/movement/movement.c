@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:26:58 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/21 18:16:15 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/21 22:16:37 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_handle_keys(int keycode, t_pgm *pgm)
 {
-	if (keycode == ESC)
+	if (keycode == KEY_ESC)
 		ft_close_window(pgm);
-	if (keycode == W)
+	if (keycode == KEY_W)
 	{
 		if (pgm->map.map[(int)(pgm->game.pos_y)]
 	                [(int)(pgm->game.pos_x + pgm->game.dir_x * SPEED)] != '1')
@@ -25,7 +25,7 @@ int	ft_handle_keys(int keycode, t_pgm *pgm)
 	            [(int)(pgm->game.pos_x)] != '1')
 		pgm->game.pos_y += pgm->game.dir_y * SPEED;	
 	}
-	if (keycode == S)
+	if (keycode == KEY_S)
 	{
 		//logica atrás satanás
 	}
