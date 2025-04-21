@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/02 17:53:59 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:57:34 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,44 @@
 # define MAP_BUFF_SIZE 1000000
 # define WIDTH 960
 # define HEIGHT 540
+# define FOV 0.66
+
+typedef struct s_ray
+{
+	int		x;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	/*Posiciones centradas +0.5*/
+	double	pos_x;
+	double	pos_y;
+	/*Direccion numerica jugador*/
+	double	dir_x;
+	double	dir_y;
+	/*Plano perpendicular a la dirección en la que mira el jugador,
+	respresenta el ancho de la cámara en 2D*/
+	double	plane_x;
+	double	plane_y;
+	/*ara algortimo*/
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+
+	// para dibujo
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+
+}				t_ray;
+
 
 typedef struct s_corner
 {
@@ -155,5 +193,10 @@ void	ft_init_struct_rendering(t_pgm *pgm);
 int    ft_print_error(char *msg, int error_code);
 // ! static void	ft_free_matirx(char **matrix);
 void	ft_free(t_pgm *pgm);
+
+
+/* FUNCIONES DE EJECUCION DE JUAN*/
+/*renderer.c*/
+int ft_render_frame(t_pgm *pgm);
 
 # endif

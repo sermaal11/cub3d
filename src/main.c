@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:42:34 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/04 17:24:29 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:18:49 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	// Funcion para imprimir texturas y actualizarlas --> so_long ft_print_sprites(&window, game.map);
-	//mlx_key_hook();
+	mlx_loop_hook(pgm.window.mlx, ft_render_frame, &pgm);
 	mlx_hook(pgm.window.win, 17, 0, ft_close_window, &pgm);
 	
 	
