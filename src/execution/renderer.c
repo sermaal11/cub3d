@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/21 16:26:26 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:15:58 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ static void	ft_draw_column(t_ray *ray, t_pgm *pgm)
 	int	y;
 	int	color;
 
-	// Puedes usar distintos colores según el lado del muro
+	// Dependiendo de la orientacion del muro permite seleccionar el color
 	if (ray->side == 0)
 		color = 0xFF0000; // rojo para paredes verticales
 	else
 		color = 0x00FF00; // verde para paredes horizontales
 
 	y = ray->draw_start;
+	//pinta y colorea, como en art attack
 	while (y <= ray->draw_end)
 	{
 		mlx_pixel_put(pgm->window.mlx, pgm->window.win, ray->x, y, color);
