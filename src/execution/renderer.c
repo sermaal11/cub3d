@@ -6,11 +6,23 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/21 14:30:37 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:39:23 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+static void ft_init_ray_for_column(t_ray *ray)
+{
+
+	/* Convertir la columna actual de pantalla (ray->x)
+	en una posición horizontal relativa del rayo */
+	ray->camera_x = 2 * ray->x / (double)WIDTH - 1;
+
+	// Dirección del rayo ajustada con el plano de cámara
+	ray->ray_dir_x = ray->dir_x + ray->plane_x * ray->camera_x;
+	ray->ray_dir_y = ray->dir_y + ray->plane_y * ray->camera_x;
+}
 
 static void ft_init_ray_direction(t_ray *ray, t_pgm *pgm)
 {
@@ -59,13 +71,7 @@ int	ft_render_frame(t_pgm *pgm)
 	ray.x = 0; // Es la columna vertical que estamos pintando
 	while (ray.x < WIDTH) //De izq a der de la pantalla calcularemos rayos
 	{
-		/*Convertir la columna de pantalla (ray.x) en un número 
-		que representa la posición horizontal del rayo en el campo de visión.*/
-		ray.camera_x = 2 * ray.x / (double)WIDTH - 1;
-		//Calcula la direccion en la que sale el rayo
-		ray.ray_dir_x = ray.dir_x + ray.plane_x * ray.camera_x;
-		ray.ray_dir_y = ray.dir_y + ray.plane_y * ray.camera_x;
-
+		ft_init_ray_for_column(&ray);
 		//
 		ray.x++;
 	}
