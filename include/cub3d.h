@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/21 13:57:34 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:55:24 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ typedef struct s_ray
 	respresenta el ancho de la cámara en 2D*/
 	double	plane_x;
 	double	plane_y;
-	/*ara algortimo*/
+	/*ALGORITMO*/
+	/* coordenadas enteras de la celda del mapa donde se encuentra
+	actualmente el rayo*/
 	int		map_x;
 	int		map_y;
 	double	side_dist_x;

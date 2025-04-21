@@ -6,11 +6,43 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/21 14:39:23 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/21 15:09:34 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+static void ft_init_ray_step_and_side_distance(t_ray *ray)
+{
+	//Transformamos la posicón del jugador en coordenadas del mapa (enteros)
+	ray->map_x = (int)ray->pos_x;
+	ray->map_y = (int)ray->pos_y;
+	//Calcular cuánto "cuesta" cruzar una celda en X e Y
+	ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
+	ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
+	// Preparar los pasos y la distancia inicial al primer cruce en X
+	if (ray->ray_dir_x < 0)
+	{
+		ray->step_x = -1;
+		ray->side_dist_x = (ray->pos_x - ray->map_x) * ray->delta_dist_x;
+	}
+	else
+	{
+		ray->step_x = 1;
+		ray->side_dist_x = (ray->map_x + 1.0 - ray->pos_x) * ray->delta_dist_x;
+	}
+	if (ray->ray_dir_y < 0)
+	{
+		ray->step_y = -1;
+		ray->side_dist_y = (ray->pos_y - ray->map_y) * ray->delta_dist_y;
+	}
+	else
+	{
+		ray->step_y = 1;
+		ray->side_dist_y = (ray->map_y + 1.0 - ray->pos_y) * ray->delta_dist_y;
+	}
+
+}
 
 static void ft_init_ray_for_column(t_ray *ray)
 {
@@ -72,7 +104,8 @@ int	ft_render_frame(t_pgm *pgm)
 	while (ray.x < WIDTH) //De izq a der de la pantalla calcularemos rayos
 	{
 		ft_init_ray_for_column(&ray);
-		//
+		ft_init_ray_step_and_side_dist();
+
 		ray.x++;
 	}
 	return (0);
