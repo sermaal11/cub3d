@@ -6,11 +6,96 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/21 15:09:34 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/21 16:26:26 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+static void	ft_draw_column(t_ray *ray, t_pgm *pgm)
+{
+	int	y;
+	int	color;
+
+	// Puedes usar distintos colores según el lado del muro
+	if (ray->side == 0)
+		color = 0xFF0000; // rojo para paredes verticales
+	else
+		color = 0x00FF00; // verde para paredes horizontales
+
+	y = ray->draw_start;
+	while (y <= ray->draw_end)
+	{
+		mlx_pixel_put(pgm->window.mlx, pgm->window.win, ray->x, y, color);
+		y++;
+	}
+}
+
+
+static void ft_calc_wall_strip(t_ray *ray)
+{
+	// Esta formula nos ayuda a calcular la altura respecto a la distancia del pl
+	ray->line_height = (int)(HEIGHT / ray->perp_wall_dist);
+	//esta formula carlcula donde tiene que empezar a dibujarse la txtura y centra
+	ray->draw_start = -ray->line_height / 2 + HEIGHT / 2;
+	//si el muro supera la pantalla superior, lo ajustamos para que empiece e el borde
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	//Centra el muro y donde tiene que empzar a dibujarse pero esta vez por debajo
+	ray->draw_end = ray->line_height / 2 + HEIGHT / 2;
+	//Si la pared se sale poor abajo, ajusta los pixeles
+	if (ray->draw_end >= HEIGHT)
+		ray->draw_end = HEIGHT - 1;
+}
+/*Esta funcion asegura que la distancia se mida hasta la cara de la pared 
+que chocaste, no hasta el centro de la casilla.*/
+static void ft_calc_perp_wall_dist(t_ray *ray)
+{
+	if (ray->side == 0)
+	{
+		ray->perp_wall_dist = (ray->map_x -  ray->pos_x + (1 - ray->step_x) / 2.0) / ray->ray_dir_x;		
+	}
+	else
+	{
+		ray->perp_wall_dist = (ray->map_y -  ray->pos_y + (1 - ray->step_y) / 2.0) / ray->ray_dir_y;			
+	}
+}
+
+/*Comparas side_dist_x y side_dist_y
+
+El menor te dice por cuál eje avanzar primero
+
+Sumas el delta correspondiente
+
+Actualizas map_x o map_y
+
+Compruebas si hay muro
+
+Guardas si fue un golpe en X o Y (side)*/
+static void	ft_find_wall_hit(t_ray *ray, char **map)
+{
+	ray->hit = 0;
+	while (ray->hit == 0)
+	{
+		//compara que eje tiene mas cerca para decidir por cual avanzar antes
+		if (ray->side_dist_x < ray->side_dist_y)
+		{
+			ray->side_dist_x += ray->delta_dist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0; // golpe en eje X
+		}
+		else
+		{
+			ray->side_dist_y += ray->delta_dist_y;
+			ray->map_y += ray->step_y;
+			ray->side = 1; // golpe en eje Y
+		}
+		if (map[ray->map_y][ray->map_x] == '1')
+			ray->hit = 1;
+		//los golpes en que eje son importantes para saber despues que textura
+	}
+}
+
 
 static void ft_init_ray_step_and_side_distance(t_ray *ray)
 {
@@ -104,8 +189,11 @@ int	ft_render_frame(t_pgm *pgm)
 	while (ray.x < WIDTH) //De izq a der de la pantalla calcularemos rayos
 	{
 		ft_init_ray_for_column(&ray);
-		ft_init_ray_step_and_side_dist();
-
+		ft_init_ray_step_and_side_distance(&ray);
+		ft_find_wall_hit(&ray, pgm->map.map);
+		ft_calc_perp_wall_dist(&ray);
+		ft_calc_wall_strip(&ray);
+		ft_draw_column(&ray, pgm);
 		ray.x++;
 	}
 	return (0);
