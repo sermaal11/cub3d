@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/21 18:10:23 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/21 22:13:06 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,20 @@
 # define FOV 0.66
 # define SPEED 0.1
 
-# define ESC 65307
-# define W 119
-# define S 115
+# ifdef __APPLE__
+// Keycodes para macOS (MiniLibX OpenGL)
+#  define KEY_ESC 53
+#  define KEY_W   13
+#  define KEY_A   0
+#  define KEY_S   1
+#  define KEY_D   2
+# else
+#  define KEY_ESC 65307
+#  define KEY_W   119
+#  define KEY_A   97
+#  define KEY_S   115
+#  define KEY_D   100
+# endif
 
 typedef struct s_ray
 {
