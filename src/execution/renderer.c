@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/21 16:26:26 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:28:46 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,9 @@ static void ft_init_ray_direction(t_ray *ray, t_pgm *pgm)
 	la mitad de un entero dentro del double para poder indicar que nuestro 
 	jugador se encuentra en medio medio del bloque y calcular correcamente 
 	el trazado de rayos y evitar posibles bugs en la esquinas.*/
-	ray->pos_x = pgm->game.y_plyr + 0.5;
-	ray->pos_y = pgm->game.x_plyr + 0.5;
+	ray->pos_x = pgm->game.pos_x;
+	ray->pos_y = pgm->game.pos_y;
+
 	
 	//convertir en valores numericos la orientacion del jugador en 2D
 	if (pgm->game.dir == 'N')

@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/21 14:55:24 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:10:23 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 # define WIDTH 960
 # define HEIGHT 540
 # define FOV 0.66
+# define SPEED 0.1
+
+# define ESC 65307
+# define W 119
+# define S 115
 
 typedef struct s_ray
 {
@@ -112,6 +117,13 @@ typedef struct s_game
 	int 	x_plyr;
 	int 	y_plyr;
 	char	dir;
+	double dir_x;
+	double dir_y;
+	double plane_x;
+	double plane_y;
+	double pos_x;
+	double pos_y;
+
 }				t_game;
 
 typedef struct s_window
@@ -200,5 +212,9 @@ void	ft_free(t_pgm *pgm);
 /* FUNCIONES DE EJECUCION DE JUAN*/
 /*renderer.c*/
 int ft_render_frame(t_pgm *pgm);
+/*PARSEO QUE NO HA HECHO SERGIO Y LE HA TOCADO HACER A JUAN CUANDO ERA LA PARTE
+MAS FACIL*/
+void	ft_init_player_orientation(t_game *game);
+int	ft_handle_keys(int keycode, t_pgm *pgm);
 
 # endif

@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:42:34 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/21 12:18:49 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:12:59 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int	main(int argc, char **argv)
 		ft_free(&pgm);
 		return (1);
 	}
+	ft_init_player_orientation(&pgm.game); //Parseo que sergio no ha hecho
+	pgm.game.pos_x = pgm.game.y_plyr + 0.5;
+	pgm.game.pos_y = pgm.game.x_plyr + 0.5;
 	if (ft_open_window(&pgm))
 	{
 		ft_free(&pgm);
@@ -37,6 +40,7 @@ int	main(int argc, char **argv)
 	// Funcion para imprimir texturas y actualizarlas --> so_long ft_print_sprites(&window, game.map);
 	mlx_loop_hook(pgm.window.mlx, ft_render_frame, &pgm);
 	mlx_hook(pgm.window.win, 17, 0, ft_close_window, &pgm);
+	mlx_key_hook(pgm.window.win, ft_handle_keys, &pgm);
 	
 	
 	mlx_loop(pgm.window.mlx);

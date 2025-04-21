@@ -35,7 +35,8 @@ SRC =	main.c \
 		parsing/parsing_map_three.c \
 		parsing/parsing_fc_color_two.c \
 		rendering/window.c \
-		execution/renderer.c
+		execution/renderer.c \
+		movement/movement.c
 
 # Archivos objeto
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
