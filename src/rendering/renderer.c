@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/22 20:55:21 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/22 21:50:35 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,8 +161,20 @@ static void ft_init_ray_direction(t_ray *ray, t_pgm *pgm)
 int	ft_render_frame(t_pgm *pgm)
 {
 	t_ray	ray;
+	int	weapon_x;
+	int	weapon_y;
 
 	ft_handle_inputs(pgm);
+	if (pgm->keys.w || pgm->keys.a || pgm->keys.s || pgm->keys.d)
+	{
+		if (++pgm->weapon_frame % 10 < 5)
+			pgm->weapon_offset = 4; // sube
+		else
+			pgm->weapon_offset = 0; // baja
+	}
+	else
+		pgm->weapon_offset = 0;
+
 	mlx_clear_window(pgm->window.mlx, pgm->window.win);
 	ft_init_ray_direction(&ray, pgm);
 	ray.x = 0;
@@ -178,6 +190,14 @@ int	ft_render_frame(t_pgm *pgm)
 		ray.x++;
 	}
 	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win, pgm->frame.ptr, 0, 0);
+	
+	weapon_x = (WIDTH - pgm->weapon_img.width) / 2;
+	weapon_y = HEIGHT - pgm->weapon_img.height + pgm->weapon_offset;
+	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win,
+		pgm->frame.ptr, 0, 0);
+	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win,
+		pgm->weapon_img.ptr, weapon_x, weapon_y);
+
 	return (0);
 }
 

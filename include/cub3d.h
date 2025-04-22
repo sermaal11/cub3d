@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/22 21:02:42 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/22 21:36:25 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,10 @@ typedef struct s_pgm
 	t_window   	window;
 	t_img 		frame;
 	t_keys		keys;
+	t_img 		weapon_img;
+int    weapon_offset; // altura vertical para simular el movimiento
+int    weapon_frame;  // para alternar la animación
+
 	
 }               t_pgm;
 
