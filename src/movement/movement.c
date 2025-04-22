@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:26:58 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/21 23:46:37 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/22 11:10:32 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ int	ft_handle_keys(int keycode, t_pgm *pgm)
 		move_forward(pgm);
 	else if (keycode == KEY_S)
 		move_backward(pgm);
+		// ! FIIIIIIIIIXXXXX
 	else if (keycode == KEY_A)
+	{
 		rotate_left(pgm);
+		ft_render_frame(pgm);
+	}
 	else if (keycode == KEY_D)
 		rotate_right(pgm);
 	return (0);
