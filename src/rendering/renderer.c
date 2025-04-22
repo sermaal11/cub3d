@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/22 13:35:40 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 13:37:58 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	ft_draw_ceiling_and_floor(t_ray *ray, t_pgm *pgm)
 {
 	int	y;
-	int	ceiling_color = rgb_to_int(pgm->ceiling);
-	int	floor_color = rgb_to_int(pgm->floor);
+	int	ceiling_color = ft_rgb_to_int(pgm->ceiling);
+	int	floor_color = ft_rgb_to_int(pgm->floor);
 
 	y = 0;
 	while (y < ray->draw_start)
