@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/21 18:10:23 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 13:35:48 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,24 @@
 # define HEIGHT 540
 # define FOV 0.66
 # define SPEED 0.1
+# define ROT_SPEED 0.05
 
-# define ESC 65307
-# define W 119
-# define S 115
+
+# ifdef __APPLE__
+// Keycodes para macOS (MiniLibX OpenGL)
+#  define KEY_ESC 53
+#  define KEY_W   13
+#  define KEY_A   0
+#  define KEY_S   1
+#  define KEY_D   2
+# else
+#  define KEY_ESC 65307
+#  define KEY_W   119
+#  define KEY_A   97
+#  define KEY_S   115
+#  define KEY_D   100
+# endif
+
 
 typedef struct s_ray
 {
@@ -90,12 +104,27 @@ typedef struct s_vec3
 	int b;
 }               t_vec3;
 
+typedef struct s_img
+{
+	void	*ptr;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}			t_img;
+
 typedef struct s_texture
 {
 	char	*no;
 	char	*so;
 	char	*we;
 	char	*ea;
+	t_img 	img_no;
+	t_img 	img_so;
+	t_img 	img_we;
+	t_img 	img_ea;
 }			   t_texture;
 
 typedef struct s_map
@@ -141,6 +170,7 @@ typedef struct s_pgm
     t_map   	map;
 	t_game  	game;
 	t_window   	window;
+	t_img 		frame;
 	
 }               t_pgm;
 
@@ -216,5 +246,27 @@ int ft_render_frame(t_pgm *pgm);
 MAS FACIL*/
 void	ft_init_player_orientation(t_game *game);
 int	ft_handle_keys(int keycode, t_pgm *pgm);
+/*MOVEMENT*/
+void move_forward(t_pgm *pgm);
+void move_backward(t_pgm *pgm);
+void rotate_left(t_pgm *pgm);
+void rotate_right(t_pgm *pgm);
+
+/*TEXTURE LOADER*/
+
+void	ft_load_all_textures(t_pgm *pgm);
+void	ft_load_texture(t_pgm *pgm, t_img *img, char *path);
+
+/*TEXTURE RENDER*/
+void	ft_put_pixel(t_img *img, int x, int y, int color);
+t_img *ft_get_texture(t_ray *ray, t_pgm *pgm);
+double	ft_get_wall_hit_point(t_ray *ray);
+int	ft_get_tex_x(t_ray *ray, double wall_x, t_img *texture);
+void	ft_init_tex_step(t_ray *ray, t_img *texture, double *step, double *tex_pos);
+void	ft_draw_wall_stripe(t_ray *ray, t_pgm *pgm, t_img *texture, int tex_x, double step, double tex_pos);
+void ft_draw_column(t_ray *ray, t_pgm *pgm);
+
+int ft_rgb_to_int(t_vec3 color);
+void	ft_draw_ceiling_and_floor(t_ray *ray, t_pgm *pgm);
 
 # endif

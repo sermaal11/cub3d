@@ -1,28 +1,16 @@
-# Nombre ejecutable
-NAME = cub3D
+# =========================================
+#              CONFIGURACIÓN
+# =========================================
 
-# Compilador
-CC = gcc
+NAME := cub3D
+CC := gcc
+CFLAGS := -Wall -Wextra -Werror -g3
 
-# Flags de compilación
-CFLAGS = -g3 -Wall -Wextra -Werror -Iinclude -Iutils
+SRC_DIR := src
+OBJ_DIR := obj
+INCLUDES := -Iinclude -Iutils
 
-# Minilibx
-MLX_PATH = ./minilibx-linux/
-MLX_NAME = libmlx.a
-MLX = $(MLX_PATH)$(MLX_NAME)
-
-# Libft
-LIBFT_PATH = ./libft/
-LIBFT_NAME = libft.a
-LIBFT = $(LIBFT_PATH)$(LIBFT_NAME)
-
-# Directorios
-SRC_DIR = src
-OBJ_DIR = obj
-
-# Archivos fuente
-SRC =	main.c \
+SRCS :=	main.c \
 		utils/utils.c \
 		utils/parsing_utils.c \
 		utils/rendering_utils.c \
@@ -35,58 +23,78 @@ SRC =	main.c \
 		parsing/parsing_map_three.c \
 		parsing/parsing_fc_color_two.c \
 		rendering/window.c \
-		execution/renderer.c \
-		movement/movement.c
+		rendering/renderer.c \
+		movement/movement.c \
+		movement/movement_keys.c \
+		textures_loader/texture_load.c \
+		textures_loader/texture_render.c
 
-# Archivos objeto
-OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
-# Reglas make
-all: $(LIBFT) $(MLX) $(NAME)
+# Librerías
+LIBFT_DIR := libft
+LIBFT := $(LIBFT_DIR)/libft.a
 
-# Compila el ejecutable principal
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(MLX) $(LIBFT) \
-		-L$(MLX_PATH) -lmlx -L$(LIBFT_PATH) -lft -lXext -lX11 -lm -I/usr/include -Imlx_linux -L/usr/lib
+# MiniLibX Linux
+MLX_LINUX_DIR := minilibx-linux
+MLX_LINUX := $(MLX_LINUX_DIR)/libmlx.a
+MLX_LINUX_FLAGS := -L$(MLX_LINUX_DIR) -lmlx -lXext -lX11 -lm
 
-# Compilar primero libft
-$(LIBFT):
-	@echo "Compilando Libft..."
-	@make -C $(LIBFT_PATH)
+# MiniLibX macOS (OpenGL)
+MLX_MACOS_DIR := minilibx-opengl
+MLX_MACOS := $(MLX_MACOS_DIR)/libmlx.a
+MLX_MACOS_FLAGS := -L$(MLX_MACOS_DIR) -lmlx -framework OpenGL -framework AppKit
 
-# Compilar primero MinilibX
-$(MLX):
-	@echo "Compilando MinilibX..."
-	@make -C $(MLX_PATH)
+# =========================================
+#              REGLAS GENERALES
+# =========================================
 
-# Compilar archivos fuente a objetos
+all: linux
+
+linux: $(LIBFT) $(MLX_LINUX) $(OBJS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_LINUX_FLAGS)
+
+macos: $(LIBFT) $(MLX_MACOS) $(OBJS)
+	$(CC) $(CFLAGS) $(INCLUDES) -I$(MLX_MACOS_DIR) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_MACOS_FLAGS)
+
+# =========================================
+#        COMPILACIÓN DE ARCHIVOS .o
+# =========================================
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-# Crear el directorio de objetos si no existe
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+# =========================================
+#        LIBRERÍAS ESTÁTICAS
+# =========================================
 
-# Eliminar archivos objeto y limpiar librerías
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
+$(MLX_LINUX):
+	make -C $(MLX_LINUX_DIR)
+
+$(MLX_MACOS):
+	make -C $(MLX_MACOS_DIR)
+
+# =========================================
+#                LIMPIEZA
+# =========================================
+
 clean:
-	@echo "Limpiando archivos objeto..."
 	rm -rf $(OBJ_DIR)
-	@echo "Limpiando Libft..."
-	make -C $(LIBFT_PATH) clean
-	@echo "Limpiando MinilibX..."
-	make -C $(MLX_PATH) clean
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(MLX_LINUX_DIR) clean
+	$(MAKE) -C $(MLX_MACOS_DIR) clean
 
-# Eliminar todo lo generado (ejecutable + librerías)
-fclean: clean
-	@echo "Eliminando ejecutable..."
+fclean:
+	$(MAKE) clean
 	rm -f $(NAME)
-	@echo "Eliminando Libft..."
-	make -C $(LIBFT_PATH) fclean
-	@echo "Eliminando MinilibX..."
-	make -C $(MLX_PATH) clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(MLX_LINUX_DIR) fclean || true
+	$(MAKE) -C $(MLX_MACOS_DIR) fclean || true
 
-# Regenerar todo desde cero
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all linux macos clean fclean re
