@@ -6,30 +6,11 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/22 11:11:10 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:01:43 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-static void	ft_draw_column(t_ray *ray, t_pgm *pgm)
-{
-	int	y;
-	int	color;
-
-	// Puedes usar distintos colores según el lado del muro
-	if (ray->side == 0)
-		color = 0xFF0000; // rojo para paredes verticales
-	else
-		color = 0x00FF00; // verde para paredes horizontales
-
-	y = ray->draw_start;
-	while (y <= ray->draw_end)
-	{
-		mlx_pixel_put(pgm->window.mlx, pgm->window.win, ray->x, y, color);
-		y++;
-	}
-}
 
 
 static void ft_calc_wall_strip(t_ray *ray)

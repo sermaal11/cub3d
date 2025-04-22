@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/22 11:35:23 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:23:32 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ typedef struct s_pgm
     t_map   	map;
 	t_game  	game;
 	t_window   	window;
-	t_img 		img;
+	t_img 		frame;
 	
 }               t_pgm;
 
@@ -255,4 +255,14 @@ void rotate_right(t_pgm *pgm);
 /*TEXTURE LOADER*/
 void	ft_load_textures(t_pgm *pgm, t_img *img, char *path);
 void	ft_load_all_textures(t_pgm *pgm);
+
+/*TEXTURE RENDER*/
+void	ft_put_pixel(t_img *img, int x, int y, int color);
+t_img *ft_get_texture(t_ray *ray, t_pgm *pgm);
+double	ft_get_wall_hit_point(t_ray *ray);
+int	ft_get_tex_x(t_ray *ray, double wall_x, t_img *texture);
+void	ft_init_tex_step(t_ray *ray, t_img *texture, double *step, double *tex_pos);
+void	ft_draw_wall_stripe(t_ray *ray, t_pgm *pgm, t_img *texture, int tex_x, double step, double tex_pos);
+void ft_draw_column(t_ray *ray, t_pgm *pgm);
+
 # endif

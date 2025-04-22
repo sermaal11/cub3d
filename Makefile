@@ -23,9 +23,11 @@ SRCS :=	main.c \
 		parsing/parsing_map_three.c \
 		parsing/parsing_fc_color_two.c \
 		rendering/window.c \
-		execution/renderer.c \
+		rendering/renderer.c \
 		movement/movement.c \
 		movement/movement_keys.c \
+		texture_loader/texture_load.c \
+		texture_loader/texture_render.c
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
