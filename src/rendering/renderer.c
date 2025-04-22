@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/22 13:37:58 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 20:55:21 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,8 +160,10 @@ static void ft_init_ray_direction(t_ray *ray, t_pgm *pgm)
 
 int	ft_render_frame(t_pgm *pgm)
 {
-	t_ray ray;
+	t_ray	ray;
 
+	ft_handle_inputs(pgm);
+	mlx_clear_window(pgm->window.mlx, pgm->window.win);
 	ft_init_ray_direction(&ray, pgm);
 	ray.x = 0;
 	while (ray.x < WIDTH)
@@ -175,7 +177,7 @@ int	ft_render_frame(t_pgm *pgm)
 		ft_draw_column(&ray, pgm);
 		ray.x++;
 	}
-	// ⚠️ Esto faltaba
 	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win, pgm->frame.ptr, 0, 0);
 	return (0);
 }
+

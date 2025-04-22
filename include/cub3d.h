@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/22 20:40:16 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/22 21:02:42 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 # include <math.h>
 
 # define MAP_BUFF_SIZE 1000000
-# define WIDTH 960
-# define HEIGHT 540
+# define WIDTH 1280
+# define HEIGHT 720
 # define FOV 0.66
-# define SPEED 0.1
-# define ROT_SPEED 0.05
+# define SPEED 0.05
+# define ROT_SPEED 0.03
 
 
 # ifdef __APPLE__
@@ -52,6 +52,15 @@
 #  define KEY_RIGHT  65363
 # endif
 
+typedef struct s_keys
+{
+	int w;
+	int a;
+	int s;
+	int d;
+	int left;
+	int right;
+}	t_keys;
 
 typedef struct s_ray
 {
@@ -175,6 +184,7 @@ typedef struct s_pgm
 	t_game  	game;
 	t_window   	window;
 	t_img 		frame;
+	t_keys		keys;
 	
 }               t_pgm;
 
@@ -249,7 +259,7 @@ int ft_render_frame(t_pgm *pgm);
 /*PARSEO QUE NO HA HECHO SERGIO Y LE HA TOCADO HACER A JUAN CUANDO ERA LA PARTE
 MAS FACIL*/
 void	ft_init_player_orientation(t_game *game);
-int	ft_handle_keys(int keycode, t_pgm *pgm);
+void	ft_handle_inputs(t_pgm *pgm);
 /*MOVEMENT*/
 void move_forward(t_pgm *pgm);
 void move_backward(t_pgm *pgm);
@@ -276,5 +286,7 @@ void	ft_draw_ceiling_and_floor(t_ray *ray, t_pgm *pgm);
 void strafe_left(t_pgm *pgm);
 void strafe_right(t_pgm *pgm);
 
+int	key_press(int keycode, t_pgm *pgm);
+int	key_release(int keycode, t_pgm *pgm);
 
 # endif

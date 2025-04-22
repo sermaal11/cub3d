@@ -6,30 +6,28 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2025/04/22 20:41:08 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/22 20:51:22 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	ft_handle_keys(int keycode, t_pgm *pgm)
+void	ft_handle_inputs(t_pgm *pgm)
 {
-	if (keycode == KEY_ESC)
-		ft_close_window(pgm);
-	else if (keycode == KEY_W)
+	if (pgm->keys.w)
 		move_forward(pgm);
-	else if (keycode == KEY_S)
+	if (pgm->keys.s)
 		move_backward(pgm);
-	else if (keycode == KEY_A)
+	if (pgm->keys.a)
 		strafe_left(pgm);
-	else if (keycode == KEY_D)
+	if (pgm->keys.d)
 		strafe_right(pgm);
-	else if (keycode == KEY_LEFT)
+	if (pgm->keys.left)
 		rotate_left(pgm);
-	else if (keycode == KEY_RIGHT)
+	if (pgm->keys.right)
 		rotate_right(pgm);
-	return (0);
 }
+
 
 
 void	move_forward(t_pgm *pgm)

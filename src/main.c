@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:42:34 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/22 12:58:59 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 20:57:02 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,10 @@ if (!pgm.frame.addr)
 }
 
 	ft_load_all_textures(&pgm);
-	// Funcion para imprimir texturas y actualizarlas --> so_long ft_print_sprites(&window, game.map);
-	mlx_loop_hook(pgm.window.mlx, ft_render_frame, &pgm);
 	mlx_hook(pgm.window.win, 17, 0, ft_close_window, &pgm);
-	mlx_hook(pgm.window.win, 2, 1L << 0, ft_handle_keys, &pgm); // key press
-
-	
+	mlx_hook(pgm.window.win, 2, 1L << 0, key_press, &pgm);
+	mlx_hook(pgm.window.win, 3, 1L << 1, key_release, &pgm);
+	mlx_loop_hook(pgm.window.mlx, ft_render_frame, &pgm);
 	
 	mlx_loop(pgm.window.mlx);
 	close(pgm.map_file.fd_map_file);
