@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:50:15 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/21 17:58:22 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 13:33:18 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,8 @@ void	ft_init_player_orientation(t_game *game)
 		game->plane_x = 0;
 		game->plane_y = 0.66;
 	}
+}
+int ft_rgb_to_int(t_vec3 color)
+{
+	return ((int)(color.r) << 16 | (int)(color.g) << 8 | (int)(color.b));
 }
