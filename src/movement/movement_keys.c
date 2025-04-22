@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2025/04/22 20:23:00 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/22 20:41:08 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,21 @@ int	ft_handle_keys(int keycode, t_pgm *pgm)
 {
 	if (keycode == KEY_ESC)
 		ft_close_window(pgm);
-	if (keycode == KEY_W)
+	else if (keycode == KEY_W)
 		move_forward(pgm);
 	else if (keycode == KEY_S)
 		move_backward(pgm);
 	else if (keycode == KEY_A)
-		rotate_left(pgm);
+		strafe_left(pgm);
 	else if (keycode == KEY_D)
+		strafe_right(pgm);
+	else if (keycode == KEY_LEFT)
+		rotate_left(pgm);
+	else if (keycode == KEY_RIGHT)
 		rotate_right(pgm);
 	return (0);
 }
+
 
 void	move_forward(t_pgm *pgm)
 {
@@ -80,3 +85,24 @@ void	rotate_right(t_pgm *pgm)
 	pgm->game.plane_y = old_plane_x * sin(ROT_SPEED)
 		+ pgm->game.plane_y * cos(ROT_SPEED);
 }
+
+void	strafe_left(t_pgm *pgm)
+{
+	if (pgm->map.map[(int)(pgm->game.pos_y)]
+		[(int)(pgm->game.pos_x - pgm->game.plane_x * SPEED)] != '1')
+		pgm->game.pos_x -= pgm->game.plane_x * SPEED;
+	if (pgm->map.map[(int)(pgm->game.pos_y - pgm->game.plane_y * SPEED)]
+		[(int)(pgm->game.pos_x)] != '1')
+		pgm->game.pos_y -= pgm->game.plane_y * SPEED;
+}
+
+void	strafe_right(t_pgm *pgm)
+{
+	if (pgm->map.map[(int)(pgm->game.pos_y)]
+		[(int)(pgm->game.pos_x + pgm->game.plane_x * SPEED)] != '1')
+		pgm->game.pos_x += pgm->game.plane_x * SPEED;
+	if (pgm->map.map[(int)(pgm->game.pos_y + pgm->game.plane_y * SPEED)]
+		[(int)(pgm->game.pos_x)] != '1')
+		pgm->game.pos_y += pgm->game.plane_y * SPEED;
+}
+

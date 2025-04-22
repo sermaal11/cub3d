@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/22 13:35:48 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 20:40:16 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,16 @@
 #  define KEY_A   0
 #  define KEY_S   1
 #  define KEY_D   2
+#  define KEY_LEFT   123
+#  define KEY_RIGHT  124
 # else
 #  define KEY_ESC 65307
 #  define KEY_W   119
 #  define KEY_A   97
 #  define KEY_S   115
 #  define KEY_D   100
+#  define KEY_LEFT   65361
+#  define KEY_RIGHT  65363
 # endif
 
 
@@ -268,5 +272,9 @@ void ft_draw_column(t_ray *ray, t_pgm *pgm);
 
 int ft_rgb_to_int(t_vec3 color);
 void	ft_draw_ceiling_and_floor(t_ray *ray, t_pgm *pgm);
+
+void strafe_left(t_pgm *pgm);
+void strafe_right(t_pgm *pgm);
+
 
 # endif
