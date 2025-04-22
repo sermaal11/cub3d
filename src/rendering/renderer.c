@@ -6,11 +6,32 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/22 13:16:16 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 13:35:40 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	ft_draw_ceiling_and_floor(t_ray *ray, t_pgm *pgm)
+{
+	int	y;
+	int	ceiling_color = rgb_to_int(pgm->ceiling);
+	int	floor_color = rgb_to_int(pgm->floor);
+
+	y = 0;
+	while (y < ray->draw_start)
+	{
+		ft_put_pixel(&pgm->frame, ray->x, y, ceiling_color);
+		y++;
+	}
+	y = ray->draw_end;
+	while (y < HEIGHT)
+	{
+		ft_put_pixel(&pgm->frame, ray->x, y, floor_color);
+		y++;
+	}
+}
+
 
 
 static void ft_calc_wall_strip(t_ray *ray)
@@ -150,6 +171,7 @@ int	ft_render_frame(t_pgm *pgm)
 		ft_find_wall_hit(&ray, pgm->map.map);
 		ft_calc_perp_wall_dist(&ray);
 		ft_calc_wall_strip(&ray);
+		ft_draw_ceiling_and_floor(&ray, pgm);
 		ft_draw_column(&ray, pgm);
 		ray.x++;
 	}

@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/22 12:41:24 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 13:35:48 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,5 +265,8 @@ int	ft_get_tex_x(t_ray *ray, double wall_x, t_img *texture);
 void	ft_init_tex_step(t_ray *ray, t_img *texture, double *step, double *tex_pos);
 void	ft_draw_wall_stripe(t_ray *ray, t_pgm *pgm, t_img *texture, int tex_x, double step, double tex_pos);
 void ft_draw_column(t_ray *ray, t_pgm *pgm);
+
+int ft_rgb_to_int(t_vec3 color);
+void	ft_draw_ceiling_and_floor(t_ray *ray, t_pgm *pgm);
 
 # endif
