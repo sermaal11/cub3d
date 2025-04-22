@@ -26,8 +26,8 @@ SRCS :=	main.c \
 		rendering/renderer.c \
 		movement/movement.c \
 		movement/movement_keys.c \
-		texture_loader/texture_load.c \
-		texture_loader/texture_render.c
+		textures_loader/texture_load.c \
+		textures_loader/texture_render.c
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 

@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/22 12:23:32 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:41:24 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,8 +253,9 @@ void rotate_left(t_pgm *pgm);
 void rotate_right(t_pgm *pgm);
 
 /*TEXTURE LOADER*/
-void	ft_load_textures(t_pgm *pgm, t_img *img, char *path);
+
 void	ft_load_all_textures(t_pgm *pgm);
+void	ft_load_texture(t_pgm *pgm, t_img *img, char *path);
 
 /*TEXTURE RENDER*/
 void	ft_put_pixel(t_img *img, int x, int y, int color);

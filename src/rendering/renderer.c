@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/22 12:01:43 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 13:06:33 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,11 +165,10 @@ static void ft_init_ray_direction(t_ray *ray, t_pgm *pgm)
 int	ft_render_frame(t_pgm *pgm)
 {
 	t_ray ray;
-	// !!!! FIIIIIXXXXXX
-	mlx_clear_window(pgm->window.mlx, pgm->window.win);
+
 	ft_init_ray_direction(&ray, pgm);
-	ray.x = 0; // Es la columna vertical que estamos pintando
-	while (ray.x < WIDTH) //De izq a der de la pantalla calcularemos rayos
+	ray.x = 0;
+	while (ray.x < WIDTH)
 	{
 		ft_init_ray_for_column(&ray);
 		ft_init_ray_step_and_side_distance(&ray);
@@ -179,5 +178,7 @@ int	ft_render_frame(t_pgm *pgm)
 		ft_draw_column(&ray, pgm);
 		ray.x++;
 	}
+	// ⚠️ Esto faltaba
+	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win, pgm->frame.ptr, 0, 0);
 	return (0);
 }

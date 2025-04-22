@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:42:34 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/22 11:35:14 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:58:59 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,22 @@ int	main(int argc, char **argv)
 		ft_free(&pgm);
 		return (1);
 	}
+	pgm.frame.ptr = mlx_new_image(pgm.window.mlx, WIDTH, HEIGHT);
+	if (!pgm.frame.ptr)
+	{
+		ft_free(&pgm);
+		return (1);
+	}
+	pgm.frame.addr = mlx_get_data_addr(pgm.frame.ptr,
+		&pgm.frame.bits_per_pixel,
+		&pgm.frame.line_length,
+		&pgm.frame.endian);
+if (!pgm.frame.addr)
+{
+	ft_free(&pgm);
+	return (1);
+}
+
 	ft_load_all_textures(&pgm);
 	// Funcion para imprimir texturas y actualizarlas --> so_long ft_print_sprites(&window, game.map);
 	mlx_loop_hook(pgm.window.mlx, ft_render_frame, &pgm);

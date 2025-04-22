@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 11:23:14 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/22 11:35:07 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:41:50 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_load_texture(t_pgm *pgm, t_img *img, char *path)
 }
 void	ft_load_all_textures(t_pgm *pgm)
 {
-	ft_load_textures(pgm, &pgm->texture.img_no, pgm->texture.no);
-	ft_load_textures(pgm, &pgm->texture.img_so, pgm->texture.so);
-	ft_load_textures(pgm, &pgm->texture.img_we, pgm->texture.we);
-	ft_load_textures(pgm, &pgm->texture.img_ea, pgm->texture.ea);
+	ft_load_texture(pgm, &pgm->texture.img_no, pgm->texture.no);
+	ft_load_texture(pgm, &pgm->texture.img_so, pgm->texture.so);
+	ft_load_texture(pgm, &pgm->texture.img_we, pgm->texture.we);
+	ft_load_texture(pgm, &pgm->texture.img_ea, pgm->texture.ea);
 }
