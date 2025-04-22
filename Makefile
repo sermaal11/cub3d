@@ -37,7 +37,6 @@ SRCS := \
 	parsing/parsing_fc_color_two.c \
 	rendering/window.c \
 	rendering/renderer.c \
-	movement/movement.c \
 	movement/movement_keys.c \
 	textures_loader/texture_load.c \
 	textures_loader/texture_render.c
