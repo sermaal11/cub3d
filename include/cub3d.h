@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/21 23:49:22 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/22 11:35:23 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 #  define KEY_S   115
 #  define KEY_D   100
 # endif
+
 
 typedef struct s_ray
 {
@@ -103,12 +104,27 @@ typedef struct s_vec3
 	int b;
 }               t_vec3;
 
+typedef struct s_img
+{
+	void	*ptr;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}			t_img;
+
 typedef struct s_texture
 {
 	char	*no;
 	char	*so;
 	char	*we;
 	char	*ea;
+	t_img 	img_no;
+	t_img 	img_so;
+	t_img 	img_we;
+	t_img 	img_ea;
 }			   t_texture;
 
 typedef struct s_map
@@ -154,6 +170,7 @@ typedef struct s_pgm
     t_map   	map;
 	t_game  	game;
 	t_window   	window;
+	t_img 		img;
 	
 }               t_pgm;
 
@@ -234,4 +251,8 @@ void move_forward(t_pgm *pgm);
 void move_backward(t_pgm *pgm);
 void rotate_left(t_pgm *pgm);
 void rotate_right(t_pgm *pgm);
+
+/*TEXTURE LOADER*/
+void	ft_load_textures(t_pgm *pgm, t_img *img, char *path);
+void	ft_load_all_textures(t_pgm *pgm);
 # endif
