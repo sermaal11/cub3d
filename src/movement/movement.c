@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:26:58 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/22 11:10:32 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 13:12:55 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_handle_keys(int keycode, t_pgm *pgm)
 	else if (keycode == KEY_A)
 	{
 		rotate_left(pgm);
-		ft_render_frame(pgm);
 	}
 	else if (keycode == KEY_D)
 		rotate_right(pgm);

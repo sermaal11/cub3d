@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/22 13:06:33 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/22 13:16:16 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,42 +124,17 @@ static void ft_init_ray_for_column(t_ray *ray)
 
 static void ft_init_ray_direction(t_ray *ray, t_pgm *pgm)
 {
-	/* Si usamos la posiciones de valor entero directamente, estariamos 
-	indicando las esquina superior izquierda del bloque al jugador, le sumamos
-	la mitad de un entero dentro del double para poder indicar que nuestro 
-	jugador se encuentra en medio medio del bloque y calcular correcamente 
-	el trazado de rayos y evitar posibles bugs en la esquinas.*/
+	// Copia la posición actual del jugador
 	ray->pos_x = pgm->game.pos_x;
 	ray->pos_y = pgm->game.pos_y;
 
-	
-	//convertir en valores numericos la orientacion del jugador en 2D
-	if (pgm->game.dir == 'N')
-	{
-		ray->dir_x = 0;
-		ray->dir_y = -1;
-	}
-	if (pgm->game.dir == 'S')
-	{
-		ray->dir_x = 0;
-		ray->dir_y = 1;
-	}
-	if (pgm->game.dir == 'E')
-	{
-		ray->dir_x = 1;
-		ray->dir_y = 0;
-	}
-	if (pgm->game.dir == 'W')
-	{	
-		ray->dir_x = -1;
-		ray->dir_y = 0;
-	}
-	
-	/* Esto va ajustar el punto de vista mediante un plano perpendicular
-	que nos indicará la vision del jugador (FOV ajustable en define) */
-	ray->plane_x = FOV * -ray->dir_y;
-	ray->plane_y = FOV * ray->dir_x;
+	// Usa la dirección actualizada (rotación) desde game
+	ray->dir_x = pgm->game.dir_x;
+	ray->dir_y = pgm->game.dir_y;
 
+	// Usa el plano de cámara actualizado desde game
+	ray->plane_x = pgm->game.plane_x;
+	ray->plane_y = pgm->game.plane_y;
 }
 
 int	ft_render_frame(t_pgm *pgm)
