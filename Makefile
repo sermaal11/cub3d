@@ -40,7 +40,8 @@ SRCS := \
 	movement/movement_keys.c \
 	textures_loader/texture_load.c \
 	textures_loader/texture_render.c \
-	movement/key_pressing.c
+	movement/key_pressing.c \
+	bonus/minimap.c
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 

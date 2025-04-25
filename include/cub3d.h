@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/22 21:36:25 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/25 12:06:07 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define FOV 0.66
 # define SPEED 0.05
 # define ROT_SPEED 0.03
+# define MINIMAP_SCALE 15
 
 
 # ifdef __APPLE__
@@ -292,5 +293,6 @@ void strafe_right(t_pgm *pgm);
 
 int	key_press(int keycode, t_pgm *pgm);
 int	key_release(int keycode, t_pgm *pgm);
+void	ft_render_minimap(t_pgm *pgm);
 
 # endif

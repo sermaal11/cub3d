@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/22 21:50:35 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/25 12:03:22 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ int	ft_render_frame(t_pgm *pgm)
 		ft_draw_column(&ray, pgm);
 		ray.x++;
 	}
+	ft_render_minimap(pgm);
 	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win, pgm->frame.ptr, 0, 0);
 	
 	weapon_x = (WIDTH - pgm->weapon_img.width) / 2;
@@ -197,7 +198,6 @@ int	ft_render_frame(t_pgm *pgm)
 		pgm->frame.ptr, 0, 0);
 	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win,
 		pgm->weapon_img.ptr, weapon_x, weapon_y);
-
 	return (0);
 }
 
