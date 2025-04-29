@@ -6,31 +6,50 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:38:51 by volmer            #+#    #+#             */
-/*   Updated: 2025/04/29 13:04:42 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/29 13:14:30 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	is_inside_circle(int x, int y, int center_x, int center_y, int radius)
+{
+	int	dx;
+	int	dy;
+
+	dx = x - center_x;
+	dy = y - center_y;
+	return (dx * dx + dy * dy <= radius * radius);
+}
 
 void	ft_draw_square(t_pgm *pgm, int x, int y, int color)
 {
 	int	dx;
 	int	dy;
 	int	tile_size;
+	int	center_x;
+	int	center_y;
+	int	radius;
 
 	tile_size = MINIMAP_SCALE;
+	center_x = MINIMAP_SCALE * 5 + MINIMAP_SCALE / 2;
+	center_y = MINIMAP_SCALE * 5 + MINIMAP_SCALE / 2;
+	radius = MINIMAP_SCALE * 5; // 5 tiles de radio
+
 	dy = 0;
 	while (dy < tile_size)
 	{
 		dx = 0;
 		while (dx < tile_size)
 		{
-			ft_put_pixel(&pgm->frame, x + dx, y + dy, color);
+			if (is_inside_circle(x + dx, y + dy, center_x, center_y, radius))
+				ft_put_pixel(&pgm->frame, x + dx, y + dy, color);
 			dx++;
 		}
 		dy++;
 	}
 }
+
 
 static void	ft_draw_minimap_row(t_pgm *pgm, int offset, double center_x, double center_y, int y)
 {
@@ -102,13 +121,28 @@ static void	ft_draw_player(t_pgm *pgm)
 
 void	ft_render_minimap(t_pgm *pgm)
 {
-	double	offset;
-	double	center_x;
-	double	center_y;
+	int	i;
+	int	j;
+	int	center_x;
+	int	center_y;
+	int	radius;
 
-	offset = 5;
-	center_x = pgm->game.pos_x;
-	center_y = pgm->game.pos_y;
-	ft_draw_minimap_tiles(pgm, offset, center_x, center_y);
+	center_x = MINIMAP_SCALE * 5 + MINIMAP_SCALE / 2;
+	center_y = MINIMAP_SCALE * 5 + MINIMAP_SCALE / 2;
+	radius = MINIMAP_SCALE * 5;
+	i = center_y - radius;
+	while (i <= center_y + radius)
+	{
+		j = center_x - radius;
+		while (j <= center_x + radius)
+		{
+			if (is_inside_circle(j, i, center_x, center_y, radius))
+				ft_put_pixel(&pgm->frame, j, i, 0x000000);
+			j++;
+		}
+		i++;
+	}
+	ft_draw_minimap_tiles(pgm, 5, pgm->game.pos_x, pgm->game.pos_y);
 	ft_draw_player(pgm);
 }
+
