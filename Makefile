@@ -39,8 +39,8 @@ SRCS := \
 	rendering/renderer.c \
 	movement/movement.c \
 	movement/movement_strafe.c \
-	textures_loader/texture_load.c \
-	textures_loader/texture_render.c \
+	textures/texture_load.c \
+	textures/texture_render.c \
 	movement/key_pressing.c \
 	bonus/minimap.c
 
