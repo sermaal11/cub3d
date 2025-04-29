@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/25 12:06:07 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/25 18:55:29 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,11 @@ typedef struct s_texture
 typedef struct s_map
 {
 	char	**map;
-    char	**copy;
-}               t_map;
+	char	**copy;
+	int		width;
+	int		height;
+}	t_map;
+
 
 typedef struct s_map_file
 {
@@ -294,5 +297,8 @@ void strafe_right(t_pgm *pgm);
 int	key_press(int keycode, t_pgm *pgm);
 int	key_release(int keycode, t_pgm *pgm);
 void	ft_render_minimap(t_pgm *pgm);
+int	ft_map_width(char **map);
+void ft_draw_square(t_pgm *pgm, int x, int y, int color);
+int	ft_map_width(char **map);
 
 # endif

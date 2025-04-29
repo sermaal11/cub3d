@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:01:54 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/21 02:59:33 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:55:16 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	ft_map_width(char **map)
+{
+	int	i = 0;
+	int	max = 0;
+	int	len;
+
+	while (map && map[i])
+	{
+		len = ft_strlen(map[i]);
+		if (len > max)
+			max = len;
+		i++;
+	}
+	return (max);
+}
 
 int	ft_is_map_line(char *line)
 {
@@ -68,6 +84,8 @@ int	ft_extract_map(t_pgm *pgm)
 	}
 	pgm->map.map[i] = NULL;
 	pgm->map.copy[i] = NULL;
+	pgm->map.height = map_lines;
+	pgm->map.width = ft_map_width(pgm->map.map);
 	return (0);
 }
 
