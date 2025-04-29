@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   texture_render.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:02:02 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/22 12:25:15 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/30 00:36:40 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-// ! REVISAR
+
 void	ft_put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
@@ -34,11 +34,16 @@ t_img *ft_get_texture(t_ray *ray, t_pgm *pgm)
 double	ft_get_wall_hit_point(t_ray *ray)
 {
 	if (ray->side == 0)
-		return (ray->pos_y + ray->perp_wall_dist * ray->ray_dir_y - floor(ray->pos_y + ray->perp_wall_dist * ray->ray_dir_y));
+	{
+		return (ray->pos_y + ray->perp_wall_dist * ray->ray_dir_y -
+				floor(ray->pos_y + ray->perp_wall_dist * ray->ray_dir_y));
+	}
 	else
-		return (ray->pos_x + ray->perp_wall_dist * ray->ray_dir_x - floor(ray->pos_x + ray->perp_wall_dist * ray->ray_dir_x));
+	{
+		return (ray->pos_x + ray->perp_wall_dist * ray->ray_dir_x -
+			floor(ray->pos_x + ray->perp_wall_dist * ray->ray_dir_x));
+	}
 }
-
 
 int	ft_get_tex_x(t_ray *ray, double wall_x, t_img *texture)
 {
