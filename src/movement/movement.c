@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement_keys.c                                    :+:      :+:    :+:   */
+/*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 00:00:00 by                   #+#    #+#             */
-/*   Updated: 2025/04/22 20:51:22 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/30 00:29:35 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	ft_handle_inputs(t_pgm *pgm)
 	if (pgm->keys.right)
 		rotate_right(pgm);
 }
-
-
 
 void	move_forward(t_pgm *pgm)
 {
@@ -83,24 +81,3 @@ void	rotate_right(t_pgm *pgm)
 	pgm->game.plane_y = old_plane_x * sin(ROT_SPEED)
 		+ pgm->game.plane_y * cos(ROT_SPEED);
 }
-
-void	strafe_left(t_pgm *pgm)
-{
-	if (pgm->map.map[(int)(pgm->game.pos_y)]
-		[(int)(pgm->game.pos_x - pgm->game.plane_x * SPEED)] != '1')
-		pgm->game.pos_x -= pgm->game.plane_x * SPEED;
-	if (pgm->map.map[(int)(pgm->game.pos_y - pgm->game.plane_y * SPEED)]
-		[(int)(pgm->game.pos_x)] != '1')
-		pgm->game.pos_y -= pgm->game.plane_y * SPEED;
-}
-
-void	strafe_right(t_pgm *pgm)
-{
-	if (pgm->map.map[(int)(pgm->game.pos_y)]
-		[(int)(pgm->game.pos_x + pgm->game.plane_x * SPEED)] != '1')
-		pgm->game.pos_x += pgm->game.plane_x * SPEED;
-	if (pgm->map.map[(int)(pgm->game.pos_y + pgm->game.plane_y * SPEED)]
-		[(int)(pgm->game.pos_x)] != '1')
-		pgm->game.pos_y += pgm->game.plane_y * SPEED;
-}
-
