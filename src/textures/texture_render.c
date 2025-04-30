@@ -6,11 +6,9 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:02:02 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/30 12:45:02 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:46:17 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../include/cub3d.h"
 
 #include "../include/cub3d.h"
 
