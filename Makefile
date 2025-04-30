@@ -42,7 +42,9 @@ SRCS := \
 	textures/texture_load.c \
 	textures/texture_render.c \
 	movement/key_pressing.c \
-	bonus/minimap.c
+	bonus/minimap/minimap_draw.c \
+	bonus/minimap/minimap_utils.c \
+	bonus/minimap/minimap_render.c
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 

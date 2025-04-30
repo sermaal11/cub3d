@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/25 18:55:29 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/30 11:17:51 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,45 +260,63 @@ int    ft_print_error(char *msg, int error_code);
 // ! static void	ft_free_matirx(char **matrix);
 void	ft_free(t_pgm *pgm);
 
+/* ************************************************************************** */
+/*                               FUNCIONES DE JUAN                            */
+/* ************************************************************************** */
 
-/* FUNCIONES DE EJECUCION DE JUAN*/
-/*renderer.c*/
-int ft_render_frame(t_pgm *pgm);
-/*PARSEO QUE NO HA HECHO SERGIO Y LE HA TOCADO HACER A JUAN CUANDO ERA LA PARTE
-MAS FACIL*/
-void	ft_init_player_orientation(t_game *game);
-void	ft_handle_inputs(t_pgm *pgm);
-/*MOVEMENT*/
-void move_forward(t_pgm *pgm);
-void move_backward(t_pgm *pgm);
-void rotate_left(t_pgm *pgm);
-void rotate_right(t_pgm *pgm);
+/* ------------------------------ RENDERING --------------------------------- */
 
-/*TEXTURE LOADER*/
+/* renderer.c */
+int		ft_render_frame(t_pgm *pgm);
+void	ft_draw_ceiling_and_floor(t_ray *ray, t_pgm *pgm);
+void	ft_draw_column(t_ray *ray, t_pgm *pgm);
+void	ft_draw_wall_stripe(t_ray *ray, t_pgm *pgm, t_img *texture,
+			int tex_x, double step, double tex_pos);
+
+/* minimap.c */
+void	ft_render_minimap(t_pgm *pgm);
+void	draw_minimap_background(t_pgm *pgm, int cx, int cy, int radius);
+void	ft_draw_minimap_tiles(t_pgm *pgm, int offset, double cx, double cy);
+void	ft_draw_player(t_pgm *pgm);
+void	ft_draw_square(t_pgm *pgm, int x, int y, int color);
+
+/* pixel & texture rendering */
+void	ft_put_pixel(t_img *img, int x, int y, int color);
+t_img	*ft_get_texture(t_ray *ray, t_pgm *pgm);
+int		ft_get_tex_x(t_ray *ray, double wall_x, t_img *texture);
+double	ft_get_wall_hit_point(t_ray *ray);
+void	ft_init_tex_step(t_ray *ray, t_img *texture,
+			double *step, double *tex_pos);
+
+/* ------------------------------ TEXTURE LOADER ---------------------------- */
 
 void	ft_load_all_textures(t_pgm *pgm);
 void	ft_load_texture(t_pgm *pgm, t_img *img, char *path);
 
-/*TEXTURE RENDER*/
-void	ft_put_pixel(t_img *img, int x, int y, int color);
-t_img *ft_get_texture(t_ray *ray, t_pgm *pgm);
-double	ft_get_wall_hit_point(t_ray *ray);
-int	ft_get_tex_x(t_ray *ray, double wall_x, t_img *texture);
-void	ft_init_tex_step(t_ray *ray, t_img *texture, double *step, double *tex_pos);
-void	ft_draw_wall_stripe(t_ray *ray, t_pgm *pgm, t_img *texture, int tex_x, double step, double tex_pos);
-void ft_draw_column(t_ray *ray, t_pgm *pgm);
+/* ------------------------------ MOVEMENT ---------------------------------- */
 
-int ft_rgb_to_int(t_vec3 color);
-void	ft_draw_ceiling_and_floor(t_ray *ray, t_pgm *pgm);
+void	move_forward(t_pgm *pgm);
+void	move_backward(t_pgm *pgm);
+void	rotate_left(t_pgm *pgm);
+void	rotate_right(t_pgm *pgm);
+void	strafe_left(t_pgm *pgm);
+void	strafe_right(t_pgm *pgm);
 
-void strafe_left(t_pgm *pgm);
-void strafe_right(t_pgm *pgm);
+/* ------------------------------ INPUTS ------------------------------------ */
 
-int	key_press(int keycode, t_pgm *pgm);
-int	key_release(int keycode, t_pgm *pgm);
-void	ft_render_minimap(t_pgm *pgm);
-int	ft_map_width(char **map);
-void ft_draw_square(t_pgm *pgm, int x, int y, int color);
-int	ft_map_width(char **map);
+void	ft_handle_inputs(t_pgm *pgm);
+int		key_press(int keycode, t_pgm *pgm);
+int		key_release(int keycode, t_pgm *pgm);
+
+/* ------------------------------ PARSE PLAYER ------------------------------ */
+
+void	ft_init_player_orientation(t_game *game);
+
+/* ------------------------------ UTILS ------------------------------------- */
+
+int		ft_rgb_to_int(t_vec3 color);
+int		ft_map_width(char **map);
+int		get_tile_color(t_pgm *pgm, int map_y, int map_x);
+int		is_inside_circle(int x, int y, int cx, int cy, int radius);
 
 # endif
