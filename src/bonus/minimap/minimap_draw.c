@@ -6,62 +6,77 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:13:02 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/30 11:13:44 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:29:54 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+#include "cub3d.h"
+
 void	ft_draw_square(t_pgm *pgm, int x, int y, int color)
 {
-	int	dx, dy;
-	int	tile = MINIMAP_SCALE;
-	int	cx = MINIMAP_SCALE * 5 + tile / 2;
-	int	cy = MINIMAP_SCALE * 5 + tile / 2;
-	int	radius = tile * 5;
+	t_draw_square	s;
+	t_circle		c;
 
-	dy = 0;
-	while (dy < tile)
+	s.tile = MINIMAP_SCALE;
+	s.cx = s.tile * 5 + s.tile / 2;
+	s.cy = s.tile * 5 + s.tile / 2;
+	s.radius = s.tile * 5;
+	s.dy = 0;
+	while (s.dy < s.tile)
 	{
-		dx = 0;
-		while (dx < tile)
+		s.dx = 0;
+		while (s.dx < s.tile)
 		{
-			if (is_inside_circle(x + dx, y + dy, cx, cy, radius))
-				ft_put_pixel(&pgm->frame, x + dx, y + dy, color);
-			dx++;
+			c.x = x + s.dx;
+			c.y = y + s.dy;
+			c.cx = s.cx;
+			c.cy = s.cy;
+			c.radius = s.radius;
+			if (is_inside_circle(c))
+				ft_put_pixel(&pgm->frame, c.x, c.y, color);
+			s.dx++;
 		}
-		dy++;
+		s.dy++;
 	}
 }
 
-static void	ft_draw_minimap_row(t_pgm *pgm, int off, double cx, double cy, int y)
+static void	ft_draw_minimap_row(t_pgm *pgm, t_minimap_row *m)
 {
-	int	x, mx, my, col;
-	int	sx, sy;
-	double	dx_off = (cx - (int)cx) * MINIMAP_SCALE;
-	double	dy_off = (cy - (int)cy) * MINIMAP_SCALE;
-
-	x = -off;
-	while (x <= off)
+	m->dx_off = (m->cx - (int)m->cx) * MINIMAP_SCALE;
+	m->dy_off = (m->cy - (int)m->cy) * MINIMAP_SCALE;
+	m->x = -m->offset;
+	while (m->x <= m->offset)
 	{
-		mx = (int)cx + x;
-		my = (int)cy + y;
-		if (my >= 0 && my < pgm->map.height && mx >= 0 && mx < pgm->map.width)
+		m->mx = (int)m->cx + m->x;
+		m->my = (int)m->cy + m->y;
+		if (m->my >= 0 && m->my < pgm->map.height
+			&& m->mx >= 0 && m->mx < pgm->map.width
+			&& m->mx < (int)ft_strlen(pgm->map.map[m->my]))
 		{
-			col = get_tile_color(pgm, my, mx);
-			sx = (x + off) * MINIMAP_SCALE - dx_off;
-			sy = (y + off) * MINIMAP_SCALE - dy_off;
-			ft_draw_square(pgm, sx, sy, col);
+			m->col = get_tile_color(pgm, m->my, m->mx);
+			m->sx = (m->x + m->offset) * MINIMAP_SCALE - m->dx_off;
+			m->sy = (m->y + m->offset) * MINIMAP_SCALE - m->dy_off;
+			ft_draw_square(pgm, m->sx, m->sy, m->col);
 		}
-		x++;
+		m->x++;
 	}
 }
 
 void	ft_draw_minimap_tiles(t_pgm *pgm, int offset, double cx, double cy)
 {
-	int	y = -offset;
+	t_minimap_row	m;
+	int				y;
 
+	y = -offset;
 	while (y <= offset)
-		ft_draw_minimap_row(pgm, offset, cx, cy, y++);
+	{
+		m.cx = cx;
+		m.cy = cy;
+		m.offset = offset;
+		m.y = y;
+		ft_draw_minimap_row(pgm, &m);
+		y++;
+	}
 }
-

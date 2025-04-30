@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/30 11:17:51 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:28:36 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 # define ROT_SPEED 0.03
 # define MINIMAP_SCALE 15
 
-
 # ifdef __APPLE__
 // Keycodes para macOS (MiniLibX OpenGL)
 #  define KEY_ESC 53
@@ -53,6 +52,60 @@
 #  define KEY_RIGHT  65363
 # endif
 
+
+/* ESTRUCTURAS PARA LA NORMINETTE*/
+typedef struct s_minimap_row
+{
+	int		x;
+	int		mx;
+	int		my;
+	int		col;
+	int		sx;
+	int		sy;
+	double	cx;
+	double	cy;
+	double	dx_off;
+	double	dy_off;
+	int		offset;
+	int		y;
+}	t_minimap_row;
+
+typedef struct s_draw_square
+{
+	int		dx;
+	int		dy;
+	int		tile;
+	int		cx;
+	int		cy;
+	int		radius;
+}	t_draw_square;
+
+typedef struct s_circle_check
+{
+	int	dx;
+	int	dy;
+	int	distance_squared;
+}	t_circle_check;
+
+typedef struct s_draw_player
+{
+	int	cx;
+	int	cy;
+	int	dx;
+	int	dy;
+}	t_draw_player;
+
+typedef struct s_circle
+{
+	int	x;
+	int	y;
+	int	cx;
+	int	cy;
+	int	radius;
+}	t_circle;
+
+
+/*FIN DE ESTRUCTURAS PARA LA NORMINETTE*/
 typedef struct s_keys
 {
 	int w;
@@ -317,6 +370,6 @@ void	ft_init_player_orientation(t_game *game);
 int		ft_rgb_to_int(t_vec3 color);
 int		ft_map_width(char **map);
 int		get_tile_color(t_pgm *pgm, int map_y, int map_x);
-int		is_inside_circle(int x, int y, int cx, int cy, int radius);
+int	is_inside_circle(t_circle c);
 
 # endif
