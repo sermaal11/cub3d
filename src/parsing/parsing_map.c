@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:01:54 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/30 11:37:48 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/04/30 13:44:26 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int	ft_map_width(char **map)
 {
-	int	i = 0;
-	int	max = 0;
+	int	i;
+	int	max;
 	int	len;
 
+	i = 0;
+	max = 0;
 	while (map && map[i])
 	{
 		len = ft_strlen(map[i]);
