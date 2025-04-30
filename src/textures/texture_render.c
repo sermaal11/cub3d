@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texture_render.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:02:02 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/30 00:58:17 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/30 12:45:02 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../include/cub3d.h"
 
 #include "../include/cub3d.h"
 
@@ -33,69 +35,14 @@ t_img	*ft_get_texture(t_ray *ray, t_pgm *pgm)
 	return (NULL);
 }
 
-double	ft_get_wall_hit_point(t_ray *ray)
-{
-	if (ray->side == 0)
-	{
-		return (ray->pos_y + ray->perp_wall_dist * ray->ray_dir_y
-			- floor(ray->pos_y + ray->perp_wall_dist * ray->ray_dir_y));
-	}
-	else
-	{
-		return (ray->pos_x + ray->perp_wall_dist * ray->ray_dir_x
-			- floor(ray->pos_x + ray->perp_wall_dist * ray->ray_dir_x));
-	}
-}
-
-int	ft_get_tex_x(t_ray *ray, double wall_x, t_img *texture)
-{
-	int	tex_x;
-
-	tex_x = (int)(wall_x * texture->width);
-	if ((ray->side == 0 && ray->ray_dir_x > 0)
-		|| (ray->side == 1 && ray->ray_dir_y < 0))
-		tex_x = texture->width - tex_x - 1;
-	return (tex_x);
-}
-
-void	ft_init_tex_step(t_ray *ray, t_img *texture, double *step,
-		double *tex_pos)
-{
-	*step = 1.0 * texture->height / ray->line_height;
-	*tex_pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) * (*step);
-}
-
-void	ft_draw_wall_stripe(t_ray *ray, t_pgm *pgm, t_img *texture, int tex_x,
-		double step, double tex_pos)
-{
-	int	y;
-	int	tex_y;
-	int	color;
-
-	y = ray->draw_start;
-	while (y <= ray->draw_end)
-	{
-		tex_y = (int)tex_pos & (texture->height - 1);
-		tex_pos += step;
-		color = *(unsigned int *)(texture->addr
-				+ (tex_y * texture->line_length + tex_x
-					* (texture->bits_per_pixel / 8)));
-		ft_put_pixel(&pgm->frame, ray->x, y, color);
-		y++;
-	}
-}
-
 void	ft_draw_column(t_ray *ray, t_pgm *pgm)
 {
-	t_img	*texture;
-	double	wall_x;
-	int		tex_x;
-	double	step;
-	double	tex_pos;
+	t_texdraw	d;
 
-	texture = ft_get_texture(ray, pgm);
-	wall_x = ft_get_wall_hit_point(ray);
-	tex_x = ft_get_tex_x(ray, wall_x, texture);
-	ft_init_tex_step(ray, texture, &step, &tex_pos);
-	ft_draw_wall_stripe(ray, pgm, texture, tex_x, step, tex_pos);
+	d.texture = ft_get_texture(ray, pgm);
+	d.step = 0;
+	d.tex_pos = 0;
+	d.tex_x = ft_get_tex_x(ray, ft_get_wall_hit_point(ray), d.texture);
+	ft_init_tex_step(ray, d.texture, &d.step, &d.tex_pos);
+	ft_draw_wall_stripe(ray, pgm, d);
 }

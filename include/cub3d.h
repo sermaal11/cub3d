@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/30 12:28:36 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:43:25 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,20 @@
 #  define KEY_RIGHT  65363
 # endif
 
+struct s_img;
+typedef struct s_img t_img;
+
 
 /* ESTRUCTURAS PARA LA NORMINETTE*/
+
+typedef struct s_texdraw
+{
+	t_img	*texture;
+	int		tex_x;
+	double	step;
+	double	tex_pos;
+}	t_texdraw;
+
 typedef struct s_minimap_row
 {
 	int		x;
@@ -243,8 +255,8 @@ typedef struct s_pgm
 	t_img 		frame;
 	t_keys		keys;
 	t_img 		weapon_img;
-int    weapon_offset; // altura vertical para simular el movimiento
-int    weapon_frame;  // para alternar la animación
+	int    weapon_offset; // altura vertical para simular el movimiento
+	int    weapon_frame;  // para alternar la animación
 
 	
 }               t_pgm;
@@ -323,23 +335,31 @@ void	ft_free(t_pgm *pgm);
 int		ft_render_frame(t_pgm *pgm);
 void	ft_draw_ceiling_and_floor(t_ray *ray, t_pgm *pgm);
 void	ft_draw_column(t_ray *ray, t_pgm *pgm);
-void	ft_draw_wall_stripe(t_ray *ray, t_pgm *pgm, t_img *texture,
-			int tex_x, double step, double tex_pos);
 
-/* minimap.c */
-void	ft_render_minimap(t_pgm *pgm);
-void	draw_minimap_background(t_pgm *pgm, int cx, int cy, int radius);
+/* minimap_draw.c */
 void	ft_draw_minimap_tiles(t_pgm *pgm, int offset, double cx, double cy);
-void	ft_draw_player(t_pgm *pgm);
 void	ft_draw_square(t_pgm *pgm, int x, int y, int color);
 
-/* pixel & texture rendering */
+/* minimap_utils.c */
+void	ft_draw_player(t_pgm *pgm);
+int		get_tile_color(t_pgm *pgm, int map_y, int map_x);
+int		is_inside_circle(t_circle c);
+
+/* minimap_background.c */
+void	draw_minimap_background(t_pgm *pgm, int cx, int cy, int radius);
+
+/* texture_render.c */
 void	ft_put_pixel(t_img *img, int x, int y, int color);
 t_img	*ft_get_texture(t_ray *ray, t_pgm *pgm);
+
+/* texture_math.c */
 int		ft_get_tex_x(t_ray *ray, double wall_x, t_img *texture);
 double	ft_get_wall_hit_point(t_ray *ray);
 void	ft_init_tex_step(t_ray *ray, t_img *texture,
 			double *step, double *tex_pos);
+
+/* texture_draw.c */
+void	ft_draw_wall_stripe(t_ray *ray, t_pgm *pgm, t_texdraw d);
 
 /* ------------------------------ TEXTURE LOADER ---------------------------- */
 
@@ -369,7 +389,7 @@ void	ft_init_player_orientation(t_game *game);
 
 int		ft_rgb_to_int(t_vec3 color);
 int		ft_map_width(char **map);
-int		get_tile_color(t_pgm *pgm, int map_y, int map_x);
-int	is_inside_circle(t_circle c);
+
+void	ft_render_minimap(t_pgm *pgm);
 
 # endif
