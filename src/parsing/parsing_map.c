@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:01:54 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/25 18:55:16 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/30 11:37:48 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_is_map_line(char *line)
 		return (1);
 	while (line[i])
 	{
-		if (!ft_strchr(" 10NSWE", line[i]))
+		if (!ft_strchr(" 10NSWED", line[i]))
 			return (1);
 		i++;
 	}

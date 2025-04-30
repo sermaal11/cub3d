@@ -6,7 +6,7 @@
 /*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 03:05:40 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/02 12:02:42 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/04/30 11:28:35 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_init_struct_parsing(t_pgm *pgm)
 	pgm->texture.so = NULL;
 	pgm->texture.we = NULL;
 	pgm->texture.ea = NULL;
+	pgm->texture.door = NULL;
+	pgm->texture.exist_door = 0;
 	pgm->map.map = NULL;
 	pgm->map.copy = NULL;
 	pgm->game.x_plyr = -1;
