@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_fc_color.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:22:41 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/30 11:38:36 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/04/30 13:34:29 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ int	ft_check_id_before_map(t_pgm *pgm)
 			map_started = 1;
 		if (map_started && (ft_strchr(line, 'F') || ft_strchr(line, 'C')
 				|| ft_strnstr(line, "NO ", 3) || ft_strnstr(line, "SO ", 3)
-				|| ft_strnstr(line, "WE ", 3) || ft_strnstr(line, "EA ", 3)
-				|| ft_strnstr(line, "DO ", 3)))
+				|| ft_strnstr(line, "WE ", 3) || ft_strnstr(line, "EA ", 3)))
 			return (ft_print_error("Error:\nID after the map.\n", 1));
 		i++;
 	}

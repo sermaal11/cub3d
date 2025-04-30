@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_file.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:14:59 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/30 11:38:59 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/04/30 13:42:25 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static int	ft_validate_identifiers(t_pgm *pgm)
 	while (pgm->map_file.file_matrix[i])
 	{
 		line = pgm->map_file.file_matrix[i];
-		if (ft_strncmp(line, "DO ", 3) == 0)
-			pgm->texture.exist_door = 1;
 		if (ft_strncmp(line, "NO ", 3) == 0
 			|| ft_strncmp(line, "SO ", 3) == 0
 			|| ft_strncmp(line, "EA ", 3) == 0
@@ -54,8 +52,7 @@ static int	ft_check_id_order(t_pgm *pgm)
 		if (!line[0] || ft_is_map_line(line) == 0)
 			break ;
 		if (!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2)
-			|| !ft_strncmp(line, "EA", 2) || !ft_strncmp(line, "WE", 2)
-			|| !ft_strncmp(line, "DO", 2))
+			|| !ft_strncmp(line, "EA", 2) || !ft_strncmp(line, "WE", 2))
 		{
 			if (block_type == 1)
 				return (1);
