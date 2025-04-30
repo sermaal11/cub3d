@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/30 00:34:28 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/30 12:48:20 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,9 +159,9 @@ int	ft_render_frame(t_pgm *pgm)
 	if (pgm->keys.w || pgm->keys.a || pgm->keys.s || pgm->keys.d)
 	{
 		if (++pgm->weapon_frame % 10 < 5)
-			pgm->weapon_offset = 4; // sube
+			pgm->weapon_offset = WEAPON_OSCILLATION_UP;
 		else
-			pgm->weapon_offset = 0; // baja
+			pgm->weapon_offset = WEAPON_OSCILLATION_DOWN;
 	}
 	else
 		pgm->weapon_offset = 0;

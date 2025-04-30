@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/30 12:43:25 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:48:06 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define SPEED 0.05
 # define ROT_SPEED 0.03
 # define MINIMAP_SCALE 15
+# define WEAPON_OSCILLATION_UP 4
+# define WEAPON_OSCILLATION_DOWN 0
 
 # ifdef __APPLE__
 // Keycodes para macOS (MiniLibX OpenGL)
