@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/25 18:55:29 by volmer           ###   ########.fr       */
+/*   Updated: 2025/04/30 11:28:14 by jariskan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,8 @@ typedef struct s_texture
 	char	*so;
 	char	*we;
 	char	*ea;
+	char	*door; // ! Textura de la puerta, añadir el t_img supongo
+	int 	exist_door;
 	t_img 	img_no;
 	t_img 	img_so;
 	t_img 	img_we;
