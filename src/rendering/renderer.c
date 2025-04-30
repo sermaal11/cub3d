@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:19:12 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/30 12:48:20 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:36:26 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,23 +152,22 @@ static void ft_init_ray_direction(t_ray *ray, t_pgm *pgm)
 int	ft_render_frame(t_pgm *pgm)
 {
 	t_ray	ray;
-	int	weapon_x;
-	int	weapon_y;
+	int		weapon_x;
+	int		weapon_y;
 
 	ft_handle_inputs(pgm);
 	if (pgm->keys.w || pgm->keys.a || pgm->keys.s || pgm->keys.d)
 	{
 		if (++pgm->weapon_frame % 10 < 5)
-			pgm->weapon_offset = WEAPON_OSCILLATION_UP;
+			pgm->weapon_offset = 4;
 		else
-			pgm->weapon_offset = WEAPON_OSCILLATION_DOWN;
+			pgm->weapon_offset = 0;
 	}
 	else
 		pgm->weapon_offset = 0;
-
 	mlx_clear_window(pgm->window.mlx, pgm->window.win);
-	ft_init_ray_direction(&ray, pgm);
 	ray.x = 0;
+	ft_init_ray_direction(&ray, pgm);
 	while (ray.x < WIDTH)
 	{
 		ft_init_ray_for_column(&ray);
@@ -180,14 +179,16 @@ int	ft_render_frame(t_pgm *pgm)
 		ft_draw_column(&ray, pgm);
 		ray.x++;
 	}
-	ft_render_minimap(pgm);
-	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win, pgm->frame.ptr, 0, 0);
-	weapon_x = (WIDTH - pgm->weapon_img.width) / 2;
-	weapon_y = HEIGHT - pgm->weapon_img.height + pgm->weapon_offset;
 	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win,
 		pgm->frame.ptr, 0, 0);
-	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win,
-		pgm->weapon_img.ptr, weapon_x, weapon_y);
+	if (pgm->weapon_img.ptr && pgm->weapon_img.addr)
+	{
+		weapon_x = (WIDTH - pgm->weapon_img.width) / 2;
+		weapon_y = HEIGHT - pgm->weapon_img.height + pgm->weapon_offset;
+		mlx_put_image_to_window(pgm->window.mlx, pgm->window.win,
+			pgm->weapon_img.ptr, weapon_x, weapon_y);
+	}
 	return (0);
 }
+
 
