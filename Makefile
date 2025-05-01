@@ -37,6 +37,10 @@ SRCS := \
 	parsing/parsing_fc_color_two.c \
 	rendering/window.c \
 	rendering/renderer.c \
+	rendering/ray_direction.c \
+	rendering/ray_distance.c \
+	rendering/ray_hit.c \
+	rendering/ray_step.c \
 	movement/movement.c \
 	movement/movement_strafe.c \
 	textures/texture_load.c \

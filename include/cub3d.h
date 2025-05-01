@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/05/01 16:17:34 by volmer           ###   ########.fr       */
+/*   Updated: 2025/05/01 16:35:45 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -395,4 +395,19 @@ int		ft_map_width(char **map);
 void	ft_render_minimap(t_pgm *pgm);
 int	ft_alloc_map_storage(t_pgm *pgm, int start, int *map_lines);
 int	ft_fill_map_lines(t_pgm *pgm, int start, int map_lines);
+
+// ray_direction.c
+void	ft_init_ray_direction(t_ray *ray, t_pgm *pgm);
+void	ft_init_ray_for_column(t_ray *ray);
+
+// ray_step.c
+void	ft_init_ray_step_and_side_distance(t_ray *ray);
+
+// ray_hit.c
+void	ft_find_wall_hit(t_ray *ray, char **map);
+
+// ray_distance.c
+void	ft_calc_perp_wall_dist(t_ray *ray);
+void	ft_calc_wall_strip(t_ray *ray);
+
 # endif

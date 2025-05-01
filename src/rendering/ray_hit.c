@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.c                                           :+:      :+:    :+:   */
+/*   ray_hit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 12:59:00 by jariskan          #+#    #+#             */
-/*   Updated: 2025/05/01 16:43:10 by volmer           ###   ########.fr       */
+/*   Created: 2025/05/01 14:10:00 by jdelorme          #+#    #+#             */
+/*   Updated: 2025/05/01 16:27:56 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	ft_close_window(t_pgm *pgm)
+void	ft_find_wall_hit(t_ray *ray, char **map)
 {
-	mlx_destroy_window(pgm->window.mlx, pgm->window.win);
-	exit (1);
-}
-
-int	ft_open_window(t_pgm *pgm)
-{
-	pgm->window.mlx = mlx_init();
-	if (!pgm->window.mlx)
-		return (ft_print_error("Error\n.Failed mlx init.\n", 1));
-	return (0);
+	ray->hit = 0;
+	while (ray->hit == 0)
+	{
+		if (ray->side_dist_x < ray->side_dist_y)
+		{
+			ray->side_dist_x += ray->delta_dist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
+		}
+		else
+		{
+			ray->side_dist_y += ray->delta_dist_y;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
+		}
+		if (map[ray->map_y][ray->map_x] == '1')
+			ray->hit = 1;
+	}
 }
