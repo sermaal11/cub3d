@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_load.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 11:23:14 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/30 15:21:12 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:21:35 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_load_texture(t_pgm *pgm, t_img *img, char *path)
 	if (!img->ptr)
 	{
 		perror("Error loading texture");
-		// ! FIX
 		exit(EXIT_FAILURE);
 	}
 	img->addr = mlx_get_data_addr(img->ptr, &img->bits_per_pixel,
@@ -32,13 +31,12 @@ void	ft_load_all_textures(t_pgm *pgm)
 	ft_load_texture(pgm, &pgm->texture.img_so, pgm->texture.so);
 	ft_load_texture(pgm, &pgm->texture.img_we, pgm->texture.we);
 	ft_load_texture(pgm, &pgm->texture.img_ea, pgm->texture.ea);
-
 	pgm->weapon_img.ptr = mlx_xpm_file_to_image(pgm->window.mlx,
 			"./textures/gun.xpm", &pgm->weapon_img.width,
 			&pgm->weapon_img.height);
 	if (!pgm->weapon_img.ptr)
 	{
-		fprintf(stderr, "⚠️  Warning: Missing gun texture. Continuing without weapon image.\n");
+		fprintf(stderr, "⚠️  Warning: Missing gun texture.\n");
 		pgm->weapon_img.width = 0;
 		pgm->weapon_img.height = 0;
 		pgm->weapon_img.addr = NULL;
@@ -51,4 +49,3 @@ void	ft_load_all_textures(t_pgm *pgm)
 				&pgm->weapon_img.endian);
 	}
 }
-
