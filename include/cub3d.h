@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/04/30 13:38:52 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:17:34 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -393,5 +393,6 @@ int		ft_rgb_to_int(t_vec3 color);
 int		ft_map_width(char **map);
 
 void	ft_render_minimap(t_pgm *pgm);
-
+int	ft_alloc_map_storage(t_pgm *pgm, int start, int *map_lines);
+int	ft_fill_map_lines(t_pgm *pgm, int start, int map_lines);
 # endif

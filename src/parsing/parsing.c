@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:09:59 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/03/21 02:59:33 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:16:26 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	ft_alloc_map_storage(t_pgm *pgm, int start, int *map_lines)
+{
+	*map_lines = 0;
+	while (pgm->map_file.file_matrix[start + *map_lines])
+		(*map_lines)++;
+	pgm->map.map = malloc(sizeof(char *) * (*map_lines + 1));
+	pgm->map.copy = malloc(sizeof(char *) * (*map_lines + 1));
+	if (!pgm->map.map || !pgm->map.copy)
+		return (ft_print_error("Error:\nFailed malloc for map.\n", 1));
+	return (0);
+}
+
+int	ft_fill_map_lines(t_pgm *pgm, int start, int map_lines)
+{
+	int	i;
+
+	i = -1;
+	while (++i < map_lines)
+	{
+		pgm->map.map[i] = ft_strdup(pgm->map_file.file_matrix[start + i]);
+		pgm->map.copy[i] = ft_strdup(pgm->map_file.file_matrix[start + i]);
+		if (!pgm->map.map[i] || !pgm->map.copy[i])
+			return (ft_print_error("Error:\nFailed malloc for map rows.\n", 1));
+	}
+	pgm->map.map[i] = NULL;
+	pgm->map.copy[i] = NULL;
+	return (0);
+}
 
 int	ft_validate_extension(char *file, char *ext)
 {

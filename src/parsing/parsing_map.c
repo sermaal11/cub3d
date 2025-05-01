@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:01:54 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/30 13:44:26 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:16:01 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,30 +62,16 @@ static int	ft_find_map_start(char **map_file)
 
 int	ft_extract_map(t_pgm *pgm)
 {
-	int		start;
-	int		map_lines;
-	int		i;
+	int	start;
+	int	map_lines;
 
 	start = ft_find_map_start(pgm->map_file.file_matrix);
 	if (start == -1)
 		return (ft_print_error("Error:\nMap not found in file.\n", 1));
-	map_lines = 0;
-	while (pgm->map_file.file_matrix[start + map_lines])
-		map_lines++;
-	pgm->map.map = (char **)malloc(sizeof(char *) * (map_lines + 1));
-	pgm->map.copy = (char **)malloc(sizeof(char *) * (map_lines + 1));
-	if (!pgm->map.map || !pgm->map.copy)
-		return (ft_print_error("Error:\nFailed malloc for map.\n", 1));
-	i = -1;
-	while (++i < map_lines)
-	{
-		pgm->map.map[i] = ft_strdup(pgm->map_file.file_matrix[start + i]);
-		pgm->map.copy[i] = ft_strdup(pgm->map_file.file_matrix[start + i]);
-		if (!pgm->map.map[i] || !pgm->map.copy[i])
-			return (ft_print_error("Error:\nFailed malloc for map rows.\n", 1));
-	}
-	pgm->map.map[i] = NULL;
-	pgm->map.copy[i] = NULL;
+	if (ft_alloc_map_storage(pgm, start, &map_lines))
+		return (1);
+	if (ft_fill_map_lines(pgm, start, map_lines))
+		return (1);
 	pgm->map.height = map_lines;
 	pgm->map.width = ft_map_width(pgm->map.map);
 	return (0);
