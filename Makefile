@@ -75,11 +75,11 @@ MLX_MACOS_FLAGS := -L$(MLX_MACOS_DIR) -lmlx -framework OpenGL -framework AppKit
 all: linux
 
 linux: MODE = linux
-linux: fclean init libft $(MLX_LINUX) $(OBJS)
+linux: init libft $(MLX_LINUX) $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_LINUX_FLAGS)
 
 macos: MODE = macos
-macos: fclean init libft $(MLX_MACOS) $(OBJS)
+macos: init libft $(MLX_MACOS) $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -I$(MLX_MACOS_DIR) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_MACOS_FLAGS)
 
 macos\ re: macos
