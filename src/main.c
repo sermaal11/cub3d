@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:42:34 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/30 00:43:06 by volmer           ###   ########.fr       */
+/*   Updated: 2025/05/05 13:30:24 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	main(int argc, char **argv)
 	if (ft_parsing(argc, argv[1], &pgm))
 		return (ft_free(&pgm), 1);
 	ft_init_player_orientation(&pgm.game);
-	pgm.game.pos_x = pgm.game.y_plyr + 0.5;
-	pgm.game.pos_y = pgm.game.x_plyr + 0.5;
+	pgm.game.pos_x = pgm.game.y_plyr + 0.49;
+	pgm.game.pos_y = pgm.game.x_plyr + 0.51;
 	if (ft_setup_and_loop(&pgm))
 		return (1);
 	close(pgm.map_file.fd_map_file);
