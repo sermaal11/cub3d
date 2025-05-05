@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:20:00 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/05/05 14:44:37 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/05/05 14:51:23 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,17 +95,11 @@ int	ft_render_frame(t_pgm *pgm)
 	(void)weapon_y;
 	ft_handle_inputs(pgm);
 	ft_update_weapon_offset(pgm);
-	mlx_clear_window(pgm->window.mlx, pgm->window.win);
-
 	ft_render_rays(pgm, &ray);
 	ft_render_minimap(pgm);
-
-	// Dibujamos el frame completo
 	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win, pgm->frame.ptr, 0, 0);
-
-	// Dibujamos el arma con transparencia manual
 	ft_draw_weapon(pgm);
-
 	return (0);
 }
+
 
