@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/05/05 14:33:14 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/05/05 15:11:25 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,23 @@
 # include <math.h>
 
 # define MAP_BUFF_SIZE 1000000
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 # define FOV 0.66
 # define SPEED 0.05
 # define ROT_SPEED 0.03
-# define MINIMAP_SCALE 15
-# define WEAPON_OSCILLATION_UP 4
+# define MINIMAP_SCALE 30
+# define WEAPON_OSCILLATION_UP 20
 # define WEAPON_OSCILLATION_DOWN 0
+# define WEAPON_OSCILLATION_MAX 12
+# define WEAPON_OSCILLATION_MIN 0.0
+# define WEAPON_OSCILLATION_SPEED 1.1
+# define WEAPON_RETURN_SPEED 1.5
+# define WEAPON_IDLE_THRESHOLD 0.1
+# define WEAPON_UP 1
+# define WEAPON_DOWN -1
+#define WEAPON_SCALE 1.5
+
 
 # ifdef __APPLE__
 #  define KEY_ESC 53
@@ -227,6 +236,9 @@ typedef struct s_pgm {
 	t_img		weapon_img;
 	int			weapon_offset;
 	int			weapon_frame;
+	double		weapon_offset_float;
+	int			weapon_direction;
+
 } t_pgm;
 
 /* ========================= FUNCIONES DE SERGIO =========================== */

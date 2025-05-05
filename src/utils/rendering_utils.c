@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:50:15 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/30 00:51:08 by volmer           ###   ########.fr       */
+/*   Updated: 2025/05/05 14:58:06 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ft_init_struct_rendering(t_pgm *pgm)
 {
 	pgm->window.mlx = NULL;
 	pgm->window.win = NULL;
+	pgm->weapon_offset_float = 0;
+	pgm->weapon_direction = 1;
 }
 
 void	ft_init_player_orientation(t_game *game)

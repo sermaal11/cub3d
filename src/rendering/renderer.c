@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:20:00 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/05/05 14:51:23 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/05/05 15:11:16 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	ft_draw_weapon(t_pgm *pgm)
 {
-	int		x;
-	int		y;
-	int		color;
-	char	*pixel;
-	int		weapon_x = (WIDTH - pgm->weapon_img.width) / 2;
-	int		weapon_y = HEIGHT - pgm->weapon_img.height + pgm->weapon_offset;
+	int	x;
+	int	y;
+	int	dx;
+	int	dy;
+	int	color;
+	char *pixel;
+	int wx = (WIDTH - pgm->weapon_img.width * WEAPON_SCALE) / 2;
+	int wy = HEIGHT - pgm->weapon_img.height * WEAPON_SCALE + pgm->weapon_offset;
 
 	y = 0;
 	while (y < pgm->weapon_img.height)
@@ -27,12 +29,25 @@ void	ft_draw_weapon(t_pgm *pgm)
 		x = 0;
 		while (x < pgm->weapon_img.width)
 		{
-			pixel = pgm->weapon_img.addr
-				+ (y * pgm->weapon_img.line_length
+			pixel = pgm->weapon_img.addr + (y * pgm->weapon_img.line_length
 				+ x * (pgm->weapon_img.bits_per_pixel / 8));
 			color = *(unsigned int *)pixel;
-			if (color != 0xFF00FF) // Color rosa = transparencia simulada
-				ft_put_pixel(&pgm->frame, weapon_x + x, weapon_y + y, color);
+			if (color != 0xFF00FF)
+			{
+				dy = 0;
+				while (dy < WEAPON_SCALE)
+				{
+					dx = 0;
+					while (dx < WEAPON_SCALE)
+					{
+						ft_put_pixel(&pgm->frame,
+							wx + x * WEAPON_SCALE + dx,
+							wy + y * WEAPON_SCALE + dy, color);
+						dx++;
+					}
+					dy++;
+				}
+			}
 			x++;
 		}
 		y++;
@@ -55,17 +70,31 @@ void	ft_draw_ceiling_and_floor(t_ray *ray, t_pgm *pgm)
 		ft_put_pixel(&pgm->frame, ray->x, y++, floor_color);
 }
 
-static void	ft_update_weapon_offset(t_pgm *pgm)
+void	ft_update_weapon_offset(t_pgm *pgm)
 {
 	if (pgm->keys.w || pgm->keys.a || pgm->keys.s || pgm->keys.d)
 	{
-		if (++pgm->weapon_frame % 10 < 5)
-			pgm->weapon_offset = WEAPON_OSCILLATION_UP;
-		else
-			pgm->weapon_offset = WEAPON_OSCILLATION_DOWN;
+		pgm->weapon_offset_float += WEAPON_OSCILLATION_SPEED * pgm->weapon_direction;
+		if (pgm->weapon_offset_float > WEAPON_OSCILLATION_MAX)
+		{
+			pgm->weapon_offset_float = WEAPON_OSCILLATION_MAX;
+			pgm->weapon_direction = WEAPON_DOWN;
+		}
+		else if (pgm->weapon_offset_float < WEAPON_OSCILLATION_MIN)
+		{
+			pgm->weapon_offset_float = WEAPON_OSCILLATION_MIN;
+			pgm->weapon_direction = WEAPON_UP;
+		}
+		pgm->weapon_offset = (int)pgm->weapon_offset_float;
 	}
 	else
-		pgm->weapon_offset = 0;
+	{
+		if (pgm->weapon_offset_float > WEAPON_IDLE_THRESHOLD)
+			pgm->weapon_offset_float -= WEAPON_RETURN_SPEED;
+		else
+			pgm->weapon_offset_float = WEAPON_OSCILLATION_MIN;
+		pgm->weapon_offset = (int)pgm->weapon_offset_float;
+	}
 }
 
 static void	ft_render_rays(t_pgm *pgm, t_ray *ray)
