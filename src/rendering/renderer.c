@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:20:00 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/05/01 16:43:17 by volmer           ###   ########.fr       */
+/*   Updated: 2025/05/05 14:44:37 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	ft_draw_weapon(t_pgm *pgm)
+{
+	int		x;
+	int		y;
+	int		color;
+	char	*pixel;
+	int		weapon_x = (WIDTH - pgm->weapon_img.width) / 2;
+	int		weapon_y = HEIGHT - pgm->weapon_img.height + pgm->weapon_offset;
+
+	y = 0;
+	while (y < pgm->weapon_img.height)
+	{
+		x = 0;
+		while (x < pgm->weapon_img.width)
+		{
+			pixel = pgm->weapon_img.addr
+				+ (y * pgm->weapon_img.line_length
+				+ x * (pgm->weapon_img.bits_per_pixel / 8));
+			color = *(unsigned int *)pixel;
+			if (color != 0xFF00FF) // Color rosa = transparencia simulada
+				ft_put_pixel(&pgm->frame, weapon_x + x, weapon_y + y, color);
+			x++;
+		}
+		y++;
+	}
+}
 
 void	ft_draw_ceiling_and_floor(t_ray *ray, t_pgm *pgm)
 {
@@ -64,16 +91,21 @@ int	ft_render_frame(t_pgm *pgm)
 	int		weapon_x;
 	int		weapon_y;
 
+	(void)weapon_x;
+	(void)weapon_y;
 	ft_handle_inputs(pgm);
 	ft_update_weapon_offset(pgm);
 	mlx_clear_window(pgm->window.mlx, pgm->window.win);
+
 	ft_render_rays(pgm, &ray);
 	ft_render_minimap(pgm);
-	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win, pgm->frame.ptr,
-		0, 0);
-	weapon_x = (WIDTH - pgm->weapon_img.width) / 2;
-	weapon_y = HEIGHT - pgm->weapon_img.height + pgm->weapon_offset;
-	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win,
-		pgm->weapon_img.ptr, weapon_x, weapon_y);
+
+	// Dibujamos el frame completo
+	mlx_put_image_to_window(pgm->window.mlx, pgm->window.win, pgm->frame.ptr, 0, 0);
+
+	// Dibujamos el arma con transparencia manual
+	ft_draw_weapon(pgm);
+
 	return (0);
 }
+
