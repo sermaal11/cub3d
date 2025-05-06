@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/05/05 15:11:25 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:18:14 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,5 +320,6 @@ int		ft_rgb_to_int(t_vec3 color);
 int		ft_map_width(char **map);
 int		ft_alloc_map_storage(t_pgm *pgm, int start, int *map_lines);
 int		ft_fill_map_lines(t_pgm *pgm, int start, int map_lines);
+void	ft_scale_and_draw_pixel(t_pgm *pgm, int x, int y, int color);
 
 #endif
