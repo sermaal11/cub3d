@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 10:56:33 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/30 12:32:42 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:04:29 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void	ft_render_minimap(t_pgm *pgm)
 	draw_minimap_background(pgm, cx, cy, radius);
 	ft_draw_minimap_tiles(pgm, 5, pgm->game.pos_x, pgm->game.pos_y);
 	ft_draw_player(pgm);
+	ft_draw_fov_cone(pgm);
 }

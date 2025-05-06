@@ -50,7 +50,8 @@ SRCS := \
 	movement/key_pressing.c \
 	bonus/minimap/minimap_draw.c \
 	bonus/minimap/minimap_utils.c \
-	bonus/minimap/minimap_render.c
+	bonus/minimap/minimap_render.c \
+	bonus/minimap/minimap_rotate.c \
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 

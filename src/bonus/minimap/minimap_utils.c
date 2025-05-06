@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 10:52:31 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/30 12:28:13 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:57:12 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ int	get_tile_color(t_pgm *pgm, int map_y, int map_x)
 
 	tile = pgm->map.map[map_y][map_x];
 	if (tile == '1')
-		return (0xFFFFFF);
-	if (ft_is_player_char(tile))
 		return (0xFF0000);
-	return (0x000000);
+	if (tile == '0')
+		return (0x111111);
+	return (0);
 }
 
 void	ft_draw_player(t_pgm *pgm)
 {
 	t_draw_player	p;
 
-	p.cx = MINIMAP_SCALE * 5;
-	p.cy = MINIMAP_SCALE * 5;
+	p.cx = MINIMAP_SCALE * 5 + MINIMAP_SCALE / 2;
+	p.cy = MINIMAP_SCALE * 5 + MINIMAP_SCALE / 2;
 	p.dy = -2;
 	while (p.dy <= 2)
 	{

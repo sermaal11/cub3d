@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:30 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/05/06 11:35:48 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:57:21 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@
 # define WEAPON_UP 1
 # define WEAPON_DOWN -1
 # define WEAPON_SCALE 1.5
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
 
 # ifdef __APPLE__
 #  define KEY_ESC 53
@@ -315,6 +318,7 @@ int		get_tile_color(t_pgm *pgm, int map_y, int map_x);
 int		is_inside_circle(t_circle c);
 void	draw_minimap_background(t_pgm *pgm, int cx, int cy, int radius);
 void	ft_render_minimap(t_pgm *pgm);
+void	ft_draw_direction_arrow(t_pgm *pgm);
 void	ft_load_all_textures(t_pgm *pgm);
 void	ft_load_texture(t_pgm *pgm, t_img *img, char *path);
 void	move_forward(t_pgm *pgm);
@@ -333,5 +337,7 @@ int		ft_map_width(char **map);
 int		ft_alloc_map_storage(t_pgm *pgm, int start, int *map_lines);
 int		ft_fill_map_lines(t_pgm *pgm, int start, int map_lines);
 void	ft_scale_and_draw_pixel(t_pgm *pgm, int x, int y, int color);
+
+void	ft_draw_fov_cone(t_pgm *pgm);
 
 #endif

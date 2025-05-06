@@ -6,11 +6,9 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:13:02 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/04/30 12:29:54 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:46:44 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "cub3d.h"
 
 #include "cub3d.h"
 
@@ -18,21 +16,20 @@ void	ft_draw_square(t_pgm *pgm, int x, int y, int color)
 {
 	t_draw_square	s;
 	t_circle		c;
+	int				half;
 
-	s.tile = MINIMAP_SCALE;
-	s.cx = s.tile * 5 + s.tile / 2;
-	s.cy = s.tile * 5 + s.tile / 2;
-	s.radius = s.tile * 5;
-	s.dy = 0;
-	while (s.dy < s.tile)
+	half = MINIMAP_SCALE / 2;
+	s.radius = MINIMAP_SCALE * 5;
+	s.dy = -half;
+	while (s.dy < half)
 	{
-		s.dx = 0;
-		while (s.dx < s.tile)
+		s.dx = -half;
+		while (s.dx < half)
 		{
 			c.x = x + s.dx;
 			c.y = y + s.dy;
-			c.cx = s.cx;
-			c.cy = s.cy;
+			c.cx = MINIMAP_SCALE * 5 + MINIMAP_SCALE / 2;
+			c.cy = MINIMAP_SCALE * 5 + MINIMAP_SCALE / 2;
 			c.radius = s.radius;
 			if (is_inside_circle(c))
 				ft_put_pixel(&pgm->frame, c.x, c.y, color);
@@ -44,20 +41,25 @@ void	ft_draw_square(t_pgm *pgm, int x, int y, int color)
 
 static void	ft_draw_minimap_row(t_pgm *pgm, t_minimap_row *m)
 {
-	m->dx_off = (m->cx - (int)m->cx) * MINIMAP_SCALE;
-	m->dy_off = (m->cy - (int)m->cy) * MINIMAP_SCALE;
+	double	rel_x;
+	double	rel_y;
+
 	m->x = -m->offset;
 	while (m->x <= m->offset)
 	{
-		m->mx = (int)m->cx + m->x;
-		m->my = (int)m->cy + m->y;
+		m->mx = (int)(pgm->game.pos_x) + m->x;
+		m->my = (int)(pgm->game.pos_y) + m->y;
 		if (m->my >= 0 && m->my < pgm->map.height
 			&& m->mx >= 0 && m->mx < pgm->map.width
 			&& m->mx < (int)ft_strlen(pgm->map.map[m->my]))
 		{
 			m->col = get_tile_color(pgm, m->my, m->mx);
-			m->sx = (m->x + m->offset) * MINIMAP_SCALE - m->dx_off;
-			m->sy = (m->y + m->offset) * MINIMAP_SCALE - m->dy_off;
+			rel_x = (double)m->mx + 0.5 - pgm->game.pos_x;
+			rel_y = (double)m->my + 0.5 - pgm->game.pos_y;
+			m->sx = MINIMAP_SCALE * 5 + MINIMAP_SCALE / 2
+				+ rel_x * MINIMAP_SCALE;
+			m->sy = MINIMAP_SCALE * 5 + MINIMAP_SCALE / 2
+				+ rel_y * MINIMAP_SCALE;
 			ft_draw_square(pgm, m->sx, m->sy, m->col);
 		}
 		m->x++;
