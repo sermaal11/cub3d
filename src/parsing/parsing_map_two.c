@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_two.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 12:35:23 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/02 12:19:25 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:30:54 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	ft_check_number_of_players(t_pgm *pgm)
 		}
 	}
 	if (player_count == 0)
-		return (ft_print_error("Error:\nNo player found in map.\n", 1));
+		return (1);
 	if (player_count > 1)
-		return (ft_print_error("Error:\nMultiple player found in map.\n", 1));
+		return (1);
 	return (0);
 }
 
@@ -65,7 +65,7 @@ int	ft_check_player_position(t_pgm *pgm)
 			if (ft_is_player_char(pgm->map.copy[i][j]))
 			{
 				if (ft_is_invalid_position(pgm->map.copy, j, i))
-					return (ft_print_error("Error:\nInvalid position.\n", 1));
+					return (1);
 			}
 			j++;
 		}
@@ -100,14 +100,14 @@ static int	ft_is_valid_corner(t_pgm *pgm)
 int	ft_validate_fully_closed_map(t_pgm *pgm)
 {
 	if (pgm->game.x_plyr < 0 || pgm->game.y_plyr < 0)
-		return (ft_print_error("Error:\nNo player found in map.\n", 1));
+		return (1);
 	if (ft_is_map_open_ext(pgm->game.x_plyr, pgm->game.y_plyr, pgm->map.copy))
-		return (ft_print_error("Error:\nMap not closed exterior border.\n", 1));
+		return (1);
 	if (ft_is_valid_corner(pgm))
-		return (ft_print_error("Error:\nMap has invalid corner.\n", 1));
+		return (1);
 	if (ft_is_map_open_int(pgm))
-		return (ft_print_error("Error:\nMap not closed interior border.\n", 1));
+		return (1);
 	if (ft_outside_element(pgm))
-		return (ft_print_error("Error:\nMap has outside elements.\n", 1));
+		return (1);
 	return (0);
 }

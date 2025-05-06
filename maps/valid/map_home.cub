@@ -1,7 +1,7 @@
-NO ./textures/flower.xpm
-SO ./textures/motif-jungle.xpm
-WE ./textures/wallpaper1.xpm
-EA ./textures/wallpaper2.xpm
+NO ./textures/wall_1.xpm
+SO ./textures/wall_2.xpm
+WE ./textures/wall_3.xpm
+EA ./textures/wall_4.xpm
 
 F 241,228,200
 C 233,233,222

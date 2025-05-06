@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_three.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jariskan <jariskan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:23:30 by jariskan          #+#    #+#             */
-/*   Updated: 2025/03/21 02:59:33 by jariskan         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:30:08 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,7 @@ int	ft_outside_element(t_pgm *pgm)
 		{
 			if (pgm->map.copy[i][j] != 'X' && pgm->map.copy[i][j] != '1' &&
 				!ft_isspace(pgm->map.copy[i][j]))
-			{
-				printf("Error:\nInvalid '%c' in [%d, %d]\n",
-					pgm->map.copy[i][j], i, j);
-				return (ft_print_error("Error:\nInvalid element outside map.\n",
-						1));
-			}
+				return (1);
 			j++;
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_file.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:14:59 by jariskan          #+#    #+#             */
-/*   Updated: 2025/04/30 13:42:25 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:21:51 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	ft_validate_identifiers(t_pgm *pgm)
 			continue ;
 		}
 		if (ft_strlen(line) > 0 && ft_is_map_line(line))
-			return (ft_print_error("Error:\nInvalid ID found.\n", 1));
+			return (1);
 		i++;
 	}
 	return (0);
@@ -68,36 +68,36 @@ static int	ft_check_id_order(t_pgm *pgm)
 static int	ft_validate_textures(t_pgm *pgm)
 {
 	if (ft_check_texture_amount(pgm))
-		return (ft_print_error("Error:\nInvalid check textures amount.\n", 1));
+		return (1);
 	if (ft_take_textures_content(pgm))
-		return (ft_print_error("Error\nInvalid check texture format\n", 1));
+		return (1);
 	return (0);
 }
 
 static int	ft_validate_floor_ceiling(t_pgm *pgm)
 {
 	if (ft_check_fc_amount(pgm))
-		return (ft_print_error("Error:\nInvalid check FC amount.\n", 1));
+		return (1);
 	if (ft_take_fc_content(pgm))
-		return (ft_print_error("Error\nInvalid check RGB format\n", 1));
+		return (1);
 	return (0);
 }
 
 int	ft_validate_map_file(t_pgm *pgm)
 {
 	if (ft_validate_identifiers(pgm))
-		return (ft_print_error("Error:\nInvalid ID.\n", 1));
+		return (1);
 	if (ft_check_id_order(pgm))
-		return (ft_print_error("Error:\nInvalid ID order.\n", 1));
+		return (1);
 	if (ft_check_id_before_map(pgm))
-		return (ft_print_error("Error:\nInvalid ID position\n", 1));
+		return (1);
 	if (ft_validate_textures(pgm))
-		return (ft_print_error("Error:\nInvalid textures format.\n", 1));
+		return (1);
 	if (ft_validate_floor_ceiling(pgm))
-		return (ft_print_error("Error:\nInvalid FC format.\n", 1));
+		return (1);
 	if (ft_extract_map(pgm))
-		return (ft_print_error("Error.\nInvalid map extraction.\n", 1));
+		return (1);
 	if (ft_validate_map(pgm))
-		return (ft_print_error("Error.\nInvalid map format.\n", 1));
+		return (1);
 	return (0);
 }

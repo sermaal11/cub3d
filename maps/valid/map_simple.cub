@@ -1,8 +1,8 @@
 
-SO ./textures/door.xpm
-NO ./textures/wood.xpm
-EA ./textures/brick.xpm
-WE ./textures/cave.xpm
+NO ./textures/wall_1.xpm
+SO ./textures/wall_2.xpm
+WE ./textures/wall_3.xpm
+EA ./textures/wall_4.xpm
 
 F 255,255,122
 C 123,200,100
