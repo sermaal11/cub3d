@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:09:59 by smarin-a          #+#    #+#             */
-/*   Updated: 2025/05/01 16:16:26 by volmer           ###   ########.fr       */
+/*   Updated: 2025/05/06 13:43:47 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,20 @@ static int	ft_split_map_file(char *argv_map, t_pgm *pgm)
 
 	pgm->map_file.fd_map_file = open(argv_map, O_RDONLY);
 	if (pgm->map_file.fd_map_file == -1)
-		return (ft_print_error("Error:\nFailed to open map file. Bad fd\n", 1));
+		return (1);
 	line_map = malloc(MAP_BUFF_SIZE * sizeof(char));
 	if (!line_map)
-		return (ft_print_error("Error:\nFailed to allocate memory.\n", 1));
+		return (1);
 	line_len_map = read(pgm->map_file.fd_map_file, line_map, MAP_BUFF_SIZE - 1);
 	if (line_len_map <= 0)
 	{
 		free(line_map);
-		return (ft_print_error("Error:\nFailed to read map file.\n", 1));
+		return (1);
 	}
 	line_map[line_len_map] = '\0';
 	pgm->map_file.file_matrix = ft_split(line_map, '\n');
 	if (!pgm->map_file.file_matrix)
-		return (ft_print_error("Error:\nFailed to split map file.\n", 1));
+		return (1);
 	free(line_map);
 	return (0);
 }
