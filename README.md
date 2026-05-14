@@ -1,50 +1,100 @@
-# Cub3D
+*This project has been created as part of the 42 curriculum by smarin-a, jdelorme.*
 
-## 📌 Descripción
-Cub3D es un proyecto de gráficos en 3D basado en raycasting, desarrollado como parte del currículo de la academia **42 Madrid**. Inspirado en el motor gráfico de Wolfenstein 3D, este proyecto permite renderizar un entorno 3D simple en tiempo real utilizando la librería **MiniLibX**.
+# cub3D
 
-## 🚀 Características
-- Implementación de un motor de raycasting para representar un entorno en 3D.
-- Soporte para texturas en las paredes.
-- Movimiento del jugador en un espacio tridimensional con colisiones básicas.
-- Lectura y validación de mapas desde archivos `.cub`.
-- Gestión de colores para el cielo y el suelo.
+## Description
 
-## 📜 Requisitos
-Para compilar y ejecutar **Cub3D**, se requieren las siguientes dependencias:
+cub3D is a first-person graphical project based on ray-casting, developed in C with
+the MiniLibX graphics library. Its purpose is to render a maze from an interior
+perspective, following the technical principles popularized by early FPS engines such
+as Wolfenstein 3D.
 
-- **GNU Make** y **GCC**
-- **MiniLibX**
-- **Valgrind** (para detección de errores de memoria, opcional)
-- **Linux o macOS**
+The project combines file parsing, map validation, real-time rendering, texture
+sampling, keyboard event handling, and basic movement physics. Scene data is provided
+through a `.cub` file that defines wall textures, floor and ceiling colors, and the
+layout of the map.
 
-## ⚙️ Instalación
-Clona el repositorio y compílalo con:
+## Features
+
+- Ray-casting renderer for a first-person maze representation.
+- Different wall textures for the north, south, west, and east faces.
+- Floor and ceiling colors defined through RGB values.
+- Player movement with `W`, `A`, `S`, and `D`.
+- Camera rotation with the left and right arrow keys.
+- Collision handling against walls.
+- Scene parsing and validation from `.cub` files.
+- Bonus-oriented minimap and weapon texture support.
+
+## Instructions
+
+### Requirements
+
+- `cc` or `gcc`
+- GNU Make
+- MiniLibX dependencies
+- X11 development libraries on Linux, or the required AppKit/OpenGL environment on
+  macOS
+
+On many Linux systems, MiniLibX requires X11 headers and libraries such as
+`libx11-dev` and `libxext-dev`.
+
+### Compilation
+
+Build the Linux target:
+
 ```sh
-$ git clone https://github.com/tuusuario/cub3d.git
-$ cd cub3d
-$ make
+make
 ```
 
-## 🎮 Uso
-Para ejecutar el programa, usa:
+Build the macOS target:
+
 ```sh
-$ ./cub3D maps/valid/map.cub
+make macos
 ```
 
-### Controles:
-- `WASD`: Movimiento del jugador
-- `← →`: Rotación de la vista
-- `ESC`: Salir del juego
+Clean generated objects:
 
-## 🗺️ Formato del Mapa
-El mapa debe estar en formato **.cub** y debe contener:
-- **Identificadores de texturas:** `NO`, `SO`, `WE`, `EA` (seguidos de la ruta de la textura)
-- **Colores de cielo y suelo:** `F` (Floor), `C` (Ceiling)
-- **Mapa del entorno:** Representado con `1` (paredes) y `0` (espacios abiertos)
-- **Ubicación del jugador:** `N`, `S`, `E`, `W` (indica la posición y dirección inicial)
+```sh
+make clean
+```
 
-Ejemplo de mapa válido:
+Remove generated objects, libraries, and the executable:
+
+```sh
+make fclean
+```
+
+Rebuild from scratch:
+
+```sh
+make re
+```
+
+### Execution
+
+Run the program with a valid `.cub` scene file:
+
+```sh
+./cub3D maps/valid/map_subject.cub
+```
+
+Controls:
+
+- `W`: move forward
+- `S`: move backward
+- `A`: strafe left
+- `D`: strafe right
+- `Left Arrow`: rotate left
+- `Right Arrow`: rotate right
+- `ESC`: close the program
+
+## Scene File Format
+
+A valid `.cub` file contains texture paths, floor and ceiling colors, and a closed
+map. The map must be the final section of the file.
+
+Example:
+
 ```txt
 NO ./textures/wall_1.xpm
 SO ./textures/wall_2.xpm
@@ -61,19 +111,55 @@ C 189,224,254
 1111111111
 ```
 
-## 🛠️ Desarrollo
-Para limpiar y recompilar el proyecto:
-```sh
-$ make fclean && make
-```
-Para depuración con Valgrind:
-```sh
-$ valgrind --leak-check=full ./cub3D maps/valid/map.cub
-```
+Mandatory identifiers:
 
-## 📌 Autores
-- **Sergio Marín Álvarez** ([smarin-a](https://github.com/tuusuario))
-- **Juan Delorme** ([jdelorme](https://github.com/jdelorme))
+- `NO`: north wall texture
+- `SO`: south wall texture
+- `WE`: west wall texture
+- `EA`: east wall texture
+- `F`: floor color in `R,G,B` format
+- `C`: ceiling color in `R,G,B` format
 
-## 📜 Licencia
-Este proyecto es parte del currículo de 42 Madrid y se distribuye bajo los términos de la academia.
+Map symbols:
+
+- `1`: wall
+- `0`: empty space
+- `N`, `S`, `E`, `W`: player start position and orientation
+- Space characters are interpreted as part of the map and must be handled carefully.
+
+## Project Structure
+
+- `src/parsing/`: scene parsing and map validation.
+- `src/rendering/`: ray initialization, DDA traversal, wall projection, and frame
+  rendering.
+- `src/textures/`: texture loading and wall texture sampling.
+- `src/movement/`: player movement, strafing, and rotation.
+- `src/bonus/minimap/`: minimap rendering utilities.
+- `include/`: public project structures, constants, and function prototypes.
+- `libft/`: local implementation of selected standard C utilities.
+- `minilibx-linux/` and `minilibx-opengl/`: MiniLibX sources for Linux and macOS.
+- `maps/`: valid, invalid, and bonus scene files used for testing.
+- `textures/`: XPM texture assets.
+
+## Resources
+
+- 42 cub3D subject PDF.
+- MiniLibX documentation and manual pages.
+- Lode Vandevenne, "Raycasting Tutorial":
+  https://lodev.org/cgtutor/raycasting.html
+- Wolfenstein 3D technical references and historical material.
+- C manual pages for memory management, file descriptors, math functions, and time
+  utilities.
+
+## AI Usage
+
+AI assistance was used as a review aid for documentation quality, requirement
+cross-checking, and general project auditing. The implementation remains the
+responsibility of the project authors, and all AI-assisted suggestions should be
+validated through compilation, testing, peer review, and direct understanding of the
+code.
+
+## Authors
+
+- Sergio Marin Alvarez, `smarin-a`
+- Juan Delorme, `jdelorme`
